@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Encyclopedia_of_the_sky</string>
+
+    <!--
+        activity_main
+    -->
+    <string name="encyclopedia"><b>Энциклопедия</b></string>
+    <string name="encyclopedia_btn_main">Энциклопедия</string>
+    <string name="help_btn_main">Помошь</string>
+    <string name="game_btn_main">Игра</string>
+    <string name="settings_btn_main">Настройки</string>
+
+</resources>
