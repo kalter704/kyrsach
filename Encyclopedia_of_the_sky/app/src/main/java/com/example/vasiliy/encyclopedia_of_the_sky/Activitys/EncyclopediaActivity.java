@@ -43,17 +43,6 @@ public class EncyclopediaActivity extends AppCompatActivity implements View.OnCl
         List<SkyObject> listSkyObjects = dataBase.getListSkyObjects();
         dataBase.close();
 
-        /*
-        lvSkyList = (ListView) findViewById(R.id.lvSkyList);
-
-        List<String> listqwe = new ArrayList<>();
-        for(SkyObject so: listSkyObjects) {
-            listqwe.add(so.getName());
-        }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.list_item_sky_object, listqwe);
-        lvSkyList.setAdapter(adapter);
-        */
         LinearLayout linLayout = (LinearLayout) findViewById(R.id.linLayout);
         LayoutInflater ltInflater = getLayoutInflater();
 
@@ -65,13 +54,14 @@ public class EncyclopediaActivity extends AppCompatActivity implements View.OnCl
 
             int imageId = EncyclopediaActivity.this.getResources().getIdentifier(skyOb.getImg(), "drawable", getPackageName());
 
-            Log.d(TAG_CLICK, "By rID: " + String.valueOf(imageId));
-            //Log.d(TAG_CLICK, "In res: " + String.valueOf(R.drawable.ic_build_black_36dp));
+            //Log.d(TAG_CLICK, "By rID: " + String.valueOf(imageId));
 
             ImageView imgView = (ImageView) item.findViewById(R.id.imageView);
             imgView.setImageDrawable(getResources().getDrawable(imageId));
 
-            Log.d(TAG_CLICK, String.valueOf(item.getId()));
+            item.setId(skyOb.getInt_id());
+
+            //Log.d(TAG_CLICK, String.valueOf(item.getId()));
 
             item.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
             linLayout.addView(item);
@@ -81,26 +71,6 @@ public class EncyclopediaActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
-        Log.d(TAG_CLICK, "Click");
-
+        Log.d(TAG_CLICK, "Click " + v.getId());
     }
 }
-    /*
-LinearLayout linLayout = (LinearLayout) findViewById(R.id.linLayout);
-
-LayoutInflater ltInflater = getLayoutInflater();
-
-for (int i = 0; i < name.length; i++) {
-        Log.d("myLogs", "i = " + i);
-        View item = ltInflater.inflate(R.layout.item, linLayout, false);
-        TextView tvName = (TextView) item.findViewById(R.id.tvName);
-        tvName.setText(name[i]);
-        TextView tvPosition = (TextView) item.findViewById(R.id.tvPosition);
-        tvPosition.setText("Должность: " + position[i]);
-        TextView tvSalary = (TextView) item.findViewById(R.id.tvSalary);
-        tvSalary.setText("Оклад: " + String.valueOf(salary[i]));
-        item.getLayoutParams().width = LayoutParams.MATCH_PARENT;
-        item.setBackgroundColor(colors[i % 2]);
-        linLayout.addView(item);
-        }
-            */

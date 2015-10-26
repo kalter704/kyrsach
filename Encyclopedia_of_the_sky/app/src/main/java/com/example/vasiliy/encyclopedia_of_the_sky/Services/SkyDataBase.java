@@ -45,12 +45,13 @@ public class SkyDataBase {
         logCursor(c);
 
         int nameColIndex = c.getColumnIndex(dbh.NAME_COLUMN_TNSO);
-        int idColIndex = c.getColumnIndex(dbh.ID_COLUMN_TNSO);
+        int nameIdColIndex = c.getColumnIndex(dbh.NAME_ID_COLUMN_TNSO);
+        int intIdColIndex = c.getColumnIndex(dbh.INT_ID_COLUMN_TNSO);
         int imgColIndex = c.getColumnIndex(dbh.IMG_COLUMN_TNSO);
 
         if(c.moveToFirst()) {
             do {
-                SkyObject temp = new SkyObject(c.getString(nameColIndex), c.getString(idColIndex), c.getString(imgColIndex));
+                SkyObject temp = new SkyObject(c.getString(nameColIndex), c.getString(nameIdColIndex), c.getInt(intIdColIndex), c.getString(imgColIndex));
                 list.add(temp);
             } while(c.moveToNext());
         }

@@ -2,12 +2,14 @@ package com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects;
 
 public class SkyObject {
     private String name;
-    private String id;
+    private String name_id;
+    private int int_id;
     private String img;
 
-    public SkyObject(String name, String id, String img) {
+    public SkyObject(String name, String name_id, int int_id, String img) {
         this.name = name;
-        this.id = id;
+        this.name_id = name_id;
+        this.int_id = int_id;
         this.img = img;
     }
 
@@ -19,12 +21,20 @@ public class SkyObject {
         this.name = name;
     }
 
-    public String getId() {
-        return id;
+    public String getName_id() {
+        return name_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setName_id(String name_id) {
+        this.name_id = name_id;
+    }
+
+    public int getInt_id() {
+        return int_id;
+    }
+
+    public void setInt_id(int int_id) {
+        this.int_id = int_id;
     }
 
     public String getImg() {
