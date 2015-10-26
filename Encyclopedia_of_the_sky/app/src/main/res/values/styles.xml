@@ -10,6 +10,12 @@
 
     <style name="MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
+        <!--
+        <item name="android:background">@color/color_background</item>
+        -->
+    </style>
+
+    <style name="total_background">
         <item name="android:background">@color/color_background</item>
     </style>
 
