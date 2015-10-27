@@ -3,10 +3,12 @@ package com.example.vasiliy.encyclopedia_of_the_sky.Activitys;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.vasiliy.encyclopedia_of_the_sky.R;
+import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBase;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,7 +30,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.encyc_btn_main:
                 intent = new Intent(this, EncyclopediaActivity.class);
                 break;
+
         }
         startActivity(intent);
+    }
+
+    public void onClickForUpdata(View v) {
+        SkyDataBase skyDataBase = new SkyDataBase(this);
+        skyDataBase.onUpdataDB();
     }
 }

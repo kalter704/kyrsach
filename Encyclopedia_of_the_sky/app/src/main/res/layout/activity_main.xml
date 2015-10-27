@@ -56,5 +56,13 @@
             style="@style/help_btn_main_style"
             android:background="@drawable/btn_bg_main"
             android:text="@string/help_btn_main" />
+
+        <Button
+            android:id="@+id/updata_db"
+            style="@style/help_btn_main_style"
+            android:background="@drawable/btn_bg_main"
+            android:layout_marginTop="20dp"
+            android:text="Обновление базы"
+            android:onClick="onClickForUpdata"/>
     </LinearLayout>
 </RelativeLayout>

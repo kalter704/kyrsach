@@ -7,35 +7,46 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
-    static final String DB_NAME = "myDB2";
-    static final int VERSION = 2;
+    static final String DB_NAME = "myDB3";
+    static final int VERSION = 3;
 
     final String LOG_TAG = "myLogs";
 
+    //
     // Таблица sky_objects
+    //
     public static final String TABLE_NAME_SKY_OBJECTS = "sky_objects";
-    public static final String TABLE_NAME_SKY_OBJECTS_OLD = "sky_objects_old";
     // TNSO = TABLE_NAME_SKY_OBJECTS
     // Названия колонок
-    public static final String NAME_COLUMN_TNSO = "name";
-    public static final String NAME_ID_COLUMN_TNSO = "name_id";
+    public static final String TITLE_COLUMN_TNSO = "title";
     public static final String INT_ID_COLUMN_TNSO = "int_id";
     public static final String IMG_COLUMN_TNSO = "image";
 
-    final String CREATE_TABLE_SKY_OBJECTS_OLD = "create table " + TABLE_NAME_SKY_OBJECTS_OLD + " ("
-            + "id integer primary key autoincrement,"
-            + NAME_COLUMN_TNSO + " text" + ','
-            + NAME_ID_COLUMN_TNSO + " text" + ','
-            + IMG_COLUMN_TNSO + " text"
-            + ");";
+    private static final String CREATE_TABLE_SKY_OBJECTS = "create table " + TABLE_NAME_SKY_OBJECTS +" ("
+                                                            + "id integer primary key autoincrement,"
+                                                            + TITLE_COLUMN_TNSO + " text" + ','
+                                                            + INT_ID_COLUMN_TNSO + " integer" + ','
+                                                            + IMG_COLUMN_TNSO + " text"
+                                                            + ");";
+    //
+    // Таблица constellation
+    //
+    public static final String TABLE_NAME_CONSTELLATION = "constellation";
+    // TNC = TABLE_NAME_CONSTELLATION
+    public static final String TITLE_COLUMN_TNC = "title";
+    public static final String INT_ID_COLUMN_TNC = "int_id";
+    public static final String IMG_COLUMN_TNC = "img";
+    public static final String TEXT_COLUMN_TNC = "text";
 
-    final String CREATE_TABLE_SKY_OBJECTS = "create table " + TABLE_NAME_SKY_OBJECTS +" ("
-            + "id integer primary key autoincrement,"
-            + NAME_COLUMN_TNSO + " text" + ','
-            + NAME_ID_COLUMN_TNSO + " text" + ','
-            + INT_ID_COLUMN_TNSO + " integer" + ','
-            + IMG_COLUMN_TNSO + " text"
-            + ");";
+    private static final String CREATE_TABLE_CONSTELLATION = "create table " + TABLE_NAME_CONSTELLATION +" ("
+                                                            + "id integer primary key autoincrement,"
+                                                            + TITLE_COLUMN_TNC + " text" + ','
+                                                            + INT_ID_COLUMN_TNC + " integer" + ','
+                                                            + IMG_COLUMN_TNC + " text" + ','
+                                                            + TEXT_COLUMN_TNC + " text "
+                                                            + ");";
+
+
 
     DatasForDB datasForDB;
 
@@ -48,77 +59,66 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d(LOG_TAG, "--- onCreate database ---");
-        // создаем таблицу с полями
-        db.execSQL(CREATE_TABLE_SKY_OBJECTS);
+        onCreateTableSkyObjects(db);
+    }
 
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        onUpdata(db);
+    }
+
+    protected void onCreateTableSkyObjects(SQLiteDatabase db) {
         ContentValues cv = new ContentValues();
 
         DatasForDB datasForDB = new DatasForDB();
+
+        //
+        // Создание и заполнение sky_objects
+        //
+        db.execSQL(CREATE_TABLE_SKY_OBJECTS);
+
         String[] sky_objects = datasForDB.sky_objects;
-        String[] sky_object_name_id = datasForDB.sky_objects_name_id;
         int[] sky_object_int_id = datasForDB.sky_objects_id;
         String[] sky_object_img = datasForDB.sky_objetcs_img;
 
         for(int i = 0; i < sky_objects.length; ++i) {
             cv.clear();
-            cv.put(NAME_COLUMN_TNSO, sky_objects[i]);
-            cv.put(NAME_ID_COLUMN_TNSO, sky_object_name_id[i]);
+            cv.put(TITLE_COLUMN_TNSO, sky_objects[i]);
             cv.put(INT_ID_COLUMN_TNSO, sky_object_int_id[i]);
             cv.put(IMG_COLUMN_TNSO, sky_object_img[i]);
             db.insert(TABLE_NAME_SKY_OBJECTS, null, cv);
         }
+
+
+        //
+        // Создание и заполнение constellation
+        //
+        db.execSQL(CREATE_TABLE_CONSTELLATION);
+
+        String[] constellation_name = datasForDB.constellation_name;
+        int[] constellation_id = datasForDB.constellation_id;
+        String[] constellation_img = datasForDB.constallation_img;
+        String[] constallation_text = datasForDB.constellation_text;
+
+        for(int i = 0; i < constellation_name.length; ++i) {
+            cv.clear();
+            cv.put(TITLE_COLUMN_TNC, constellation_name[i]);
+            cv.put(INT_ID_COLUMN_TNC, constellation_id[i]);
+            cv.put(IMG_COLUMN_TNC, constellation_img[i]);
+            cv.put(TEXT_COLUMN_TNC, constallation_text[i]);
+            db.insert(TABLE_NAME_CONSTELLATION, null, cv);
+        }
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Не работает !!!!!
-
-
-        ContentValues cv = new ContentValues();
-
-        int[] sky_object_int_id = datasForDB.sky_objects_id;
-
+    public void onUpdata(SQLiteDatabase db) {
         db.beginTransaction();
-        try{
-
-            db.execSQL("create table tmp_table ("
-                    + "id integer primary key,"
-                    + "id_int integer"
-                    + ");");
-
-            for (int i = 0; i < sky_object_int_id.length; i++) {
-                cv.clear();
-                cv.put("id_int", sky_object_int_id[i]);
-                db.insert("tmp_table", null, cv);
-            }
-
-            db.execSQL(CREATE_TABLE_SKY_OBJECTS_OLD);
-            db.execSQL("insert into " + TABLE_NAME_SKY_OBJECTS_OLD +" select id, "
-                    + NAME_COLUMN_TNSO + ','
-                    + NAME_ID_COLUMN_TNSO + ','
-                    + IMG_COLUMN_TNSO
-                    + "from " + TABLE_NAME_SKY_OBJECTS + ';'
-            );
-
+        try {
+            db.execSQL("drop table " + TABLE_NAME_CONSTELLATION + ";");
             db.execSQL("drop table " + TABLE_NAME_SKY_OBJECTS + ";");
-
-            db.execSQL(CREATE_TABLE_SKY_OBJECTS);
-
-            db.execSQL("insert into " + TABLE_NAME_SKY_OBJECTS + "select id"
-                    + NAME_COLUMN_TNSO + ','
-                    + NAME_ID_COLUMN_TNSO + ','
-                    + IMG_COLUMN_TNSO
-                    + "from " + TABLE_NAME_SKY_OBJECTS_OLD + ';'
-            );
-
-            db.execSQL("insert into " + TABLE_NAME_SKY_OBJECTS + "select id_int from tmp_table");
-
-            db.execSQL("drop table tmp_table;");
-
+            onCreateTableSkyObjects(db);
             db.setTransactionSuccessful();
         } finally {
             db.endTransaction();
         }
     }
-
 }

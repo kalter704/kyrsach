@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.ConstellationSimplyObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.SkyObject;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class SkyDataBase {
 
-    private final String LOG_TAG_DB = "myDataBase";
+    private final String LOG_TAG_DB = "mainList";
 
     private final Context context;
     private DBHelper dbh;
@@ -34,7 +35,14 @@ public class SkyDataBase {
         }
     }
 
+    public void onUpdataDB() {
+        this.open();
+        dbh.onUpdata(db);
+        this.close();
+    }
+
     public List<SkyObject> getListSkyObjects() {
+        this.open();
         List<SkyObject> list = new ArrayList<>();
 
         SQLiteDatabase db = dbh.getWritableDatabase();
@@ -44,19 +52,46 @@ public class SkyDataBase {
 
         logCursor(c);
 
-        int nameColIndex = c.getColumnIndex(dbh.NAME_COLUMN_TNSO);
-        int nameIdColIndex = c.getColumnIndex(dbh.NAME_ID_COLUMN_TNSO);
+        int nameColIndex = c.getColumnIndex(dbh.TITLE_COLUMN_TNSO);
         int intIdColIndex = c.getColumnIndex(dbh.INT_ID_COLUMN_TNSO);
         int imgColIndex = c.getColumnIndex(dbh.IMG_COLUMN_TNSO);
 
         if(c.moveToFirst()) {
             do {
-                SkyObject temp = new SkyObject(c.getString(nameColIndex), c.getString(nameIdColIndex), c.getInt(intIdColIndex), c.getString(imgColIndex));
+                SkyObject temp = new SkyObject(c.getString(nameColIndex), c.getInt(intIdColIndex), c.getString(imgColIndex));
                 list.add(temp);
             } while(c.moveToNext());
         }
 
         c.close();
+        this.close();
+        return list;
+    }
+
+    public List<ConstellationSimplyObject> getListConstellationSimply() {
+        this.open();
+        List<ConstellationSimplyObject> list = new ArrayList<>();
+
+
+        SQLiteDatabase db = dbh.getWritableDatabase();
+        Cursor c;
+
+        String[] columns = {dbh.TITLE_COLUMN_TNC, dbh.INT_ID_COLUMN_TNC};
+        c = db.query(dbh.TABLE_NAME_CONSTELLATION, columns, null, null, null, null, dbh.TITLE_COLUMN_TNC);
+
+        logCursor(c);
+
+        int nameColIndex = c.getColumnIndex(dbh.TITLE_COLUMN_TNC);
+        int intIdColIndex = c.getColumnIndex(dbh.INT_ID_COLUMN_TNC);
+
+        if(c.moveToFirst()) {
+            do {
+                ConstellationSimplyObject temp = new ConstellationSimplyObject(c.getString(nameColIndex), c.getInt(intIdColIndex));
+                list.add(temp);
+            } while(c.moveToNext());
+        }
+
+        this.close();
         return list;
     }
 
