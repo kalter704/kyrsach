@@ -51,14 +51,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Предыдущий" />
+            android:background="@drawable/btn_bg_main"
+            android:text="<-- Предыдущий" />
 
         <Button
             android:id="@+id/btnNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Следующий" />
+            android:background="@drawable/btn_bg_main"
+            android:text="Следующий -->" />
 
     </LinearLayout>
 

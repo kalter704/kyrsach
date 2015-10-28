@@ -72,9 +72,7 @@ public class ConstellationViewActivity extends AppCompatActivity {
             if (tag.equals(TABS_TAG_1)) {
                 return getLayoutInflater().inflate(R.layout.tab_main_inf_1, null);
             } else if (tag.equals(TABS_TAG_2)) {
-                TextView tv = new TextView(ConstellationViewActivity.this);
-                tv.setText("Это создано вручную");
-                return tv;
+                return getLayoutInflater().inflate(R.layout.tab_main_inf_1, null);
             }
             return null;
         }
