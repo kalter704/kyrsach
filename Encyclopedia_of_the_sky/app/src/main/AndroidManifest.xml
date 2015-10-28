@@ -21,7 +21,13 @@
             android:name=".Activitys.EncyclopediaActivity"
             android:screenOrientation="portrait" >
         </activity>
-        <activity android:name=".Activitys.ConstellationListActivity" >
+        <activity android:name=".Activitys.ConstellationListActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Activitys.ConstellationViewActivity"
+            android:label="@string/title_activity_constellation_view"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

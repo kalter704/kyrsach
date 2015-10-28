@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.ConstellationSimplyObject;
+import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.ConstellationObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.SkyObject;
 
 import java.util.ArrayList;
@@ -45,7 +45,6 @@ public class SkyDataBase {
         this.open();
         List<SkyObject> list = new ArrayList<>();
 
-        SQLiteDatabase db = dbh.getWritableDatabase();
         Cursor c;
 
         c = db.query(dbh.TABLE_NAME_SKY_OBJECTS, null, null, null, null, null, null);
@@ -68,12 +67,10 @@ public class SkyDataBase {
         return list;
     }
 
-    public List<ConstellationSimplyObject> getListConstellationSimply() {
+    public List<ConstellationObject> getListConstellationSimply() {
         this.open();
-        List<ConstellationSimplyObject> list = new ArrayList<>();
+        List<ConstellationObject> list = new ArrayList<>();
 
-
-        SQLiteDatabase db = dbh.getWritableDatabase();
         Cursor c;
 
         String[] columns = {dbh.TITLE_COLUMN_TNC, dbh.INT_ID_COLUMN_TNC};
@@ -86,13 +83,50 @@ public class SkyDataBase {
 
         if(c.moveToFirst()) {
             do {
-                ConstellationSimplyObject temp = new ConstellationSimplyObject(c.getString(nameColIndex), c.getInt(intIdColIndex));
+                ConstellationObject temp = new ConstellationObject(c.getString(nameColIndex), c.getInt(intIdColIndex));
                 list.add(temp);
             } while(c.moveToNext());
         }
 
         this.close();
         return list;
+    }
+
+    public ConstellationObject getConstellationById(int id) {
+        this.open();
+        Cursor c;
+
+        String[] columns = {
+                dbh.TITLE_COLUMN_TNC,
+                dbh.INT_ID_COLUMN_TNC,
+                dbh.IMG_COLUMN_TNC,
+                dbh.TEXT_INF_COLUMN_TNC,
+                dbh.TEXT_WHERE_FROM_COLUMN_TNC
+        };
+
+        String where = dbh.INT_ID_COLUMN_TNC + " = ?";
+
+        String[] arg = { String.valueOf(id) };
+
+        c = db.query(dbh.TABLE_NAME_CONSTELLATION, columns, where, arg, null, null, null);
+
+        logCursor(c);
+
+        int titleColIndex = c.getColumnIndex(dbh.TITLE_COLUMN_TNC);
+        int intIdColIndex = c.getColumnIndex(dbh.INT_ID_COLUMN_TNC);
+        int imgColIndex = c.getColumnIndex(dbh.IMG_COLUMN_TNC);
+        int textInfColIndex = c.getColumnIndex(dbh.TEXT_INF_COLUMN_TNC);
+        int textWhereColIndex = c.getColumnIndex(dbh.TEXT_WHERE_FROM_COLUMN_TNC);
+
+        ConstellationObject constellationObject = new ConstellationObject(
+                c.getString(titleColIndex),
+                c.getInt(intIdColIndex),
+                c.getString(imgColIndex),
+                c.getString(textInfColIndex),
+                c.getString(textWhereColIndex)
+        );
+        this.close();
+        return constellationObject;
     }
 
     void logCursor(Cursor c) {

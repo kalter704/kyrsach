@@ -10,5 +10,9 @@
     <string name="game_btn_main">Игра</string>
     <string name="settings_btn_main">Настройки</string>
     <string name="title_activity_constellation_list">ConstellationListActivity</string>
+    <string name="title_activity_constellation_view">ConstellationViewActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
