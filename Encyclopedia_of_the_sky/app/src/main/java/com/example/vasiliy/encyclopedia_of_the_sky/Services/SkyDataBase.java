@@ -100,8 +100,8 @@ public class SkyDataBase {
                 dbh.TITLE_COLUMN_TNC,
                 dbh.INT_ID_COLUMN_TNC,
                 dbh.IMG_COLUMN_TNC,
-                dbh.TEXT_INF_COLUMN_TNC,
-                dbh.TEXT_WHERE_FROM_COLUMN_TNC
+                dbh.TEXT_WHERE_FROM_COLUMN_TNC,
+                dbh.TEXT_INF_COLUMN_TNC
         };
 
         String where = dbh.INT_ID_COLUMN_TNC + " = ?";
@@ -118,6 +118,7 @@ public class SkyDataBase {
         int textInfColIndex = c.getColumnIndex(dbh.TEXT_INF_COLUMN_TNC);
         int textWhereColIndex = c.getColumnIndex(dbh.TEXT_WHERE_FROM_COLUMN_TNC);
 
+        c.moveToFirst();
         ConstellationObject constellationObject = new ConstellationObject(
                 c.getString(titleColIndex),
                 c.getInt(intIdColIndex),

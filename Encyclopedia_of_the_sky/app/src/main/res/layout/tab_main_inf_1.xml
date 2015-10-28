@@ -6,38 +6,46 @@
 
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView" >
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_width="match_parent"
+                android:id="@+id/imgInTab"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="center"
-                android:src="@drawable/constellation_andromeda"
-                android:id="@+id/imgInTab"/>
+                android:src="@drawable/constellation_andromeda" />
 
             <TextView
-                    android:id="@+id/tvTitleInTab"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center"
-                    android:text="Tab main!!!"
-                    android:textSize="30dp" />
+                android:id="@+id/tvTitleInTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="Tab main!!!"
+                android:textSize="30dp" />
 
             <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvTitleInTab"
-                    android:layout_gravity="center_horizontal|bottom"
-                    android:id="@+id/tvTextWhereInTab" />
+                android:id="@+id/tvTextWhereInTab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvTitleInTab"
+                android:layout_gravity="center_horizontal|bottom"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="temp Text"
+                android:textSize="18dp" />
         </LinearLayout>
     </ScrollView>
 

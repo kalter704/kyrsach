@@ -21,7 +21,7 @@ public class ConstellationViewActivity extends AppCompatActivity {
 
     TabHost tabHost;
     TextView tvTitle;
-    TextView tvTextWhere;
+    TextView tvTextOnBat1;
     ImageView imgView;
 
     private SkyDataBase dataBase;
@@ -47,7 +47,7 @@ public class ConstellationViewActivity extends AppCompatActivity {
         tabHost.addTab(tabSpec);
 
         tvTitle = (TextView) findViewById(R.id.tvTitleInTab);
-        tvTextWhere = (TextView) findViewById(R.id.tvTextWhereInTab);
+        tvTextOnBat1 = (TextView) findViewById(R.id.tvTextWhereInTab);
         imgView = (ImageView) findViewById(R.id.imgInTab);
 
         dataBase = new SkyDataBase(this);
@@ -59,7 +59,7 @@ public class ConstellationViewActivity extends AppCompatActivity {
         ConstellationObject constellationObject = dataBase.getConstellationById(idConstellation);
 
         tvTitle.setText(constellationObject.getName());
-        tvTextWhere.setText(constellationObject.getTextWhereFrom());
+        tvTextOnBat1.setText(constellationObject.getTextWhereFrom());
 
         int imageId = ConstellationViewActivity.this.getResources().getIdentifier(constellationObject.getImg(), "drawable", getPackageName());
         imgView.setImageDrawable(getResources().getDrawable(imageId));
