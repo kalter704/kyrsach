@@ -1,11 +1,18 @@
 package com.example.vasiliy.encyclopedia_of_the_sky.Services;
 
 public class DatasForDB {
+    //
+    // Все объекты
+    //
     public String[] sky_objects = {"Созвездия", "Звезды", "Звездные скопления", "Планеты", "Туманности", "Черные дыры", "Галактики", "Экзопланеты", "Остероиды и кометы", "Темная материя"};
     public int[] sky_objects_id = {101, 102, 103, 104, 105, 106, 107, 108, 109, 110};
     public String[] sky_objetcs_img = {"constellation_main", "main_list_star", "main_list_planet", "main__description_black_36dp", "main_list_planet",
                                         "main_build_black_36dp", "main_list_planet", "main_list_planet", "main__description_black_36dp", "main_build_black_36dp"};
 
+
+    //
+    // Созвездия
+    //
     public String[] constellationName = {"Персей", "Лев", "Андромеда", "Большая Медведица", "Овен", "Цефей"};
     public int[] constelletionId = {151, 152, 153, 154, 155, 156};
     public String[] constellationImg = {"constellation_persei", "constellation_lev", "constellation_andromeda", "constellation_bolshaya_medved", "constellation_oven", "constellation_cefer"};
@@ -25,5 +32,18 @@ public class DatasForDB {
             "Овен (баран) – одно из наиболее заметных созвездий Зодиака. Имя ярчайшей звезды Овна, – Гамаль, по-арабски значит “подросший ягненок”. Шумеры называли Овен “созвездием барана”. Разумеется, это тот самый золоторунный баран, который спас Фрикса и Геллу от их мачехи Ино. Они собирались добраться до Колхиды, но Гелла утонула в водах пролива, получившего ее имя – Геллеспонт (ныне – Дарданеллы). Но Фрикс добрался до Колхиды, принес в жертву барана, а руно вручил царю Ээту.",
             "Цефей (или Кефей) – мифический эфиопский царь, супруг Кассиопеи, отец Андромеды. Звезда δ Цефея – прототип пульсирующих переменных звезд и симпатичная визуальная двойная. Ее блеск меняется с периодом 5.4 суток от 3.78 до 4.63 звездной величины. А звезда VV Цефея – самая большая среди известных нам звезд: это затменная переменная, главный компонент которой в 2000 раз больше Солнца."
     };
+
+
+    //
+    // Планеты, экзопланеты и карликовые планеты
+    //
+    public String[] planetName = {"Венера"};
+    public int[] planetId = {201};
+    public String[] planetImg = {"planet_venera"};
+    public String[] planetMass = {"4,8685·10^24 кг"};
+    public String[] planetRadius = {"6051,8 ± 1,0 км"};
+    public String[] planetDay = {"116д 18ч 0м"};
+    public String[] planetYear = {"225 дней"};
+    public String[] planetRadiusSun = {"108 200 000 км"};
 }
 
