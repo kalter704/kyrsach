@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/btn_bg_main"
-            android:text="<-- Предыдущий" />
+            android:text="@string/prev_page" />
 
         <Button
             android:id="@+id/btnNext"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/btn_bg_main"
-            android:text="Следующий -->" />
+            android:text="@string/next_page" />
 
     </LinearLayout>
 

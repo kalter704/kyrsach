@@ -10,6 +10,7 @@ import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.Cons
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.SkyObject;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class SkyDataBase {
@@ -129,6 +130,14 @@ public class SkyDataBase {
         this.close();
         return constellationObject;
     }
+
+    public List<Integer> getConstellationIdList() {
+        List<Integer> list = new LinkedList<>();
+        ///////////////
+        return list;
+    }
+
+
 
     void logCursor(Cursor c) {
         if (c != null) {

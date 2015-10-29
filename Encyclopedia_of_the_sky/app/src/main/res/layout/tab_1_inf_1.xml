@@ -17,14 +17,14 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imgInTab"
+                android:id="@+id/imgInTab1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="center"
                 android:src="@drawable/constellation_andromeda" />
 
             <TextView
-                android:id="@+id/tvTitleInTab"
+                android:id="@+id/tvTitleInTab1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -36,7 +36,7 @@
                 android:textSize="30dp" />
 
             <TextView
-                android:id="@+id/tvTextWhereInTab"
+                android:id="@+id/tvTextWhereInTab1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvTitleInTab"
