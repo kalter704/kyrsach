@@ -5,6 +5,11 @@ public class SkyObject {
     private int int_id;
     private String img;
 
+    public SkyObject(String name, int int_id) {
+        this.name = name;
+        this.int_id = int_id;
+    }
+
     public SkyObject(String name, int int_id, String img) {
         this.name = name;
         this.int_id = int_id;

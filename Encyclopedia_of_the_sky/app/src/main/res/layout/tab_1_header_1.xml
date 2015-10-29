@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/tab_bg">
+
+    <TextView
+        android:id="@+id/tvTab1Header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Вкладка"
+        style="@style/text_view_in_tabs_style"/>
+
+    <LinearLayout
+        android:id="@+id/lineInTab1"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        style="@style/line_view_in_tabs_style"
+        android:background="@drawable/tab_bg_line_no_selected"></LinearLayout>
+
+</LinearLayout>

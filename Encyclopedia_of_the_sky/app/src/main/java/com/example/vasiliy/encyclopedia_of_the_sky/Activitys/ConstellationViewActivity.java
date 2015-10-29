@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -14,7 +17,7 @@ import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBase;
 
 import java.util.List;
 
-public class ConstellationViewActivity extends AppCompatActivity implements TabHost.OnTabChangeListener {
+public class ConstellationViewActivity extends AppCompatActivity implements TabHost.OnTabChangeListener, View.OnClickListener {
 
     final String TABS_TAG_1 = "Tab 1";
     final String TABS_TAG_2 = "Tab 2";
@@ -25,8 +28,17 @@ public class ConstellationViewActivity extends AppCompatActivity implements TabH
     TextView tvTitle2;
     TextView tvTextOnTab2;
     ImageView imgView;
+    Button btnPrev;
+    Button btnNext;
+    ScrollView svTab1;
+    ScrollView svTab2;
 
-    ConstellationObject constellationObject;
+    private ConstellationObject constellationObject;
+    private boolean isChangeConstellationTab1;
+    private boolean isChangeConstellationTab2;
+
+    private LinearLayout lineInBat1;
+    private LinearLayout lineInBat2;
 
     private List<Integer> idList;
 
@@ -44,15 +56,28 @@ public class ConstellationViewActivity extends AppCompatActivity implements TabH
 
         tabSpec = tabHost.newTabSpec(TABS_TAG_1);
         tabSpec.setContent(TabFactory);
-        tabSpec.setIndicator("Вкладка 1");
+        View tab_header1 = getLayoutInflater().inflate(R.layout.tab_1_header_1, null);
+        TextView tvTextInHeadTab1 = (TextView) tab_header1.findViewById(R.id.tvTab1Header);
+        tvTextInHeadTab1.setText("Информация");
+        tabSpec.setIndicator(tab_header1);
+        //tabSpec.setIndicator("Вкладка 1");
         tabHost.addTab(tabSpec);
 
         tabSpec = tabHost.newTabSpec(TABS_TAG_2);
         tabSpec.setContent(TabFactory);
-        tabSpec.setIndicator("Вкладка 2");
+        View tab_header2 = getLayoutInflater().inflate(R.layout.tab_2_header_1, null);
+        TextView tvTextInHeadTab2 = (TextView) tab_header2.findViewById(R.id.tvTab2Header);
+        tvTextInHeadTab2.setText("История");
+        tabSpec.setIndicator(tab_header2);
         tabHost.addTab(tabSpec);
 
+        lineInBat1 = (LinearLayout) findViewById(R.id.lineInTab1);
+        lineInBat2 = (LinearLayout) findViewById(R.id.lineInTab2);
+
         tabHost.setCurrentTab(0);
+
+        lineInBat1.setBackgroundColor(getResources().getColor(R.color.line_selected_color));
+        lineInBat2.setBackgroundColor(getResources().getColor(R.color.line_no_selected_color));
 
         tabHost.setOnTabChangedListener(this);
         dataBase = new SkyDataBase(this);
@@ -64,31 +89,53 @@ public class ConstellationViewActivity extends AppCompatActivity implements TabH
         constellationObject = dataBase.getConstellationById(idConstellation);
 
         idList = dataBase.getConstellationIdList();
+        isChangeConstellationTab1 = true;
+        isChangeConstellationTab2 = true;
 
+        this.setContentIntoTab1();
+
+        btnPrev = (Button) findViewById(R.id.btnPrev);
+        btnPrev.setOnClickListener(this);
+
+        btnNext = (Button) findViewById(R.id.btnNext);
+        btnNext.setOnClickListener(this);
     }
 
-    private void setContentOnTab1() {
-        if(tvTitle == null || tvTextOnTab1 == null || imgView == null) {
+    private void setContentIntoTab1() {
+        if(tvTitle == null || tvTextOnTab1 == null || imgView == null || svTab1 == null) {
             tvTitle = (TextView) findViewById(R.id.tvTitleInTab1);
             tvTextOnTab1 = (TextView) findViewById(R.id.tvTextWhereInTab1);
             imgView = (ImageView) findViewById(R.id.imgInTab1);
-
+            svTab1 = (ScrollView) findViewById(R.id.svTab1Inf1);
+        }
+        if(isChangeConstellationTab1) {
+            svTab1.scrollTo(0, 0);
             tvTitle.setText(constellationObject.getName());
             tvTextOnTab1.setText(constellationObject.getTextWhereFrom());
+            svTab2 = (ScrollView) findViewById(R.id.svTab2Stiry1);
 
             int imageId = ConstellationViewActivity.this.getResources().getIdentifier(constellationObject.getImg(), "drawable", getPackageName());
             imgView.setImageDrawable(getResources().getDrawable(imageId));
+            isChangeConstellationTab1 = false;
         }
+        lineInBat1.setBackgroundColor(getResources().getColor(R.color.line_selected_color));
+        lineInBat2.setBackgroundColor(getResources().getColor(R.color.line_no_selected_color));
     }
 
-    private void setContentOnTab2() {
+    private void setContentIntoTab2() {
         if(tvTitle2 == null || tvTextOnTab2 == null) {
             tvTitle2 = (TextView) findViewById(R.id.tvTitleInTab2);
             tvTextOnTab2 = (TextView) findViewById(R.id.tvTextInTab2);
-
+            svTab2 = (ScrollView) findViewById(R.id.svTab2Stiry1);
+        }
+        if(isChangeConstellationTab2) {
+            svTab2.scrollTo(0, 0);
             tvTitle2.setText(constellationObject.getName());
             tvTextOnTab2.setText(constellationObject.getTextInf());
+            isChangeConstellationTab2 = false;
         }
+        lineInBat2.setBackgroundColor(getResources().getColor(R.color.line_selected_color));
+        lineInBat1.setBackgroundColor(getResources().getColor(R.color.line_no_selected_color));
     }
 
     TabHost.TabContentFactory TabFactory = new TabHost.TabContentFactory() {
@@ -108,10 +155,37 @@ public class ConstellationViewActivity extends AppCompatActivity implements TabH
     @Override
     public void onTabChanged(String tabId) {
         if(TABS_TAG_1.equals(tabId)) {
-            setContentOnTab1();
+            setContentIntoTab1();
         }
         if(TABS_TAG_2.equals(tabId)) {
-            setContentOnTab2();
+            setContentIntoTab2();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        int i = idList.indexOf(constellationObject.getInt_id());
+        switch(v.getId()) {
+            case R.id.btnPrev:
+                --i;
+                if(i < 0) {
+                    i = idList.size() - 1;
+                }
+                break;
+            case R.id.btnNext:
+                ++i;
+                if(i == idList.size()) {
+                    i = 0;
+                }
+                break;
+        }
+        constellationObject = dataBase.getConstellationById(idList.get(i));
+        isChangeConstellationTab1 = true;
+        isChangeConstellationTab2 = true;
+        if(tabHost.getCurrentTab() == 0) {
+            setContentIntoTab1();
+        } else {
+            setContentIntoTab2();
         }
     }
 }

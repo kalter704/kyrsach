@@ -15,7 +15,7 @@ import java.util.List;
 
 public class SkyDataBase {
 
-    private final String LOG_TAG_DB = "mainList";
+    private final String LOG_TAG_DB = "DataBaseQuery";
 
     private final Context context;
     private DBHelper dbh;
@@ -132,12 +132,26 @@ public class SkyDataBase {
     }
 
     public List<Integer> getConstellationIdList() {
-        List<Integer> list = new LinkedList<>();
-        ///////////////
+        List<Integer> list = new ArrayList<>();
+        this.open();
+        Cursor c;
+
+        String[] columns = { dbh.INT_ID_COLUMN_TNC };
+
+        c = db.query(dbh.TABLE_NAME_CONSTELLATION, columns, null, null, null, null, dbh.TITLE_COLUMN_TNC);
+
+        logCursor(c);
+
+        int intIdColIndex = c.getColumnIndex(dbh.INT_ID_COLUMN_TNC);
+
+        if(c.moveToFirst()) {
+            do {
+                list.add(c.getInt(intIdColIndex));
+            } while(c.moveToNext());
+        }
+        this.close();
         return list;
     }
-
-
 
     void logCursor(Cursor c) {
         if (c != null) {

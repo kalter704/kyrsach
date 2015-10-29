@@ -1,8 +1,6 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -47,21 +45,9 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">#FFD261</item>
         <item name="android:textSize">35dp</item>
-        <!--
-        android:textColor="#FFD261"
-        android:textSize="35dp"
-        -->
     </style>
 
     <style name="linearlayout_for_btns_main_style">
-        <!--
-                android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:padding="10dp"
-        -->
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerHorizontal">true</item>
@@ -69,12 +55,19 @@
         <item name="android:orientation">vertical</item>
         <item name="android:padding">10dp</item>
     </style>
+
     <style name="MyAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="MyAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <!--
-    <style name="relativelayout_bg_main">
-        <item name="android:background">@drawable/background_hello_activity</item>
+    <style name="text_view_in_tabs_style">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:textSize">20dp</item>
     </style>
-    -->
+
+    <style name="line_view_in_tabs_style">
+        <item name="android:layout_height">8dp</item>
+    </style>
+
 </resources>

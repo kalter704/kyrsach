@@ -6,4 +6,7 @@
 
     <color name="color_background">#665664ba</color>
     <color name="color_background2">#465664ba</color>
+
+    <color name="line_selected_color">#A080DD</color>
+    <color name="line_no_selected_color">#7652BA</color>
 </resources>
