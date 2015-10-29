@@ -108,10 +108,10 @@ public class ConstellationViewActivity extends AppCompatActivity implements TabH
     @Override
     public void onTabChanged(String tabId) {
         if(TABS_TAG_1.equals(tabId)) {
-            setContextOnTab1();
+            setContentOnTab1();
         }
         if(TABS_TAG_2.equals(tabId)) {
-            setContextOnTab2();
+            setContentOnTab2();
         }
     }
 }
