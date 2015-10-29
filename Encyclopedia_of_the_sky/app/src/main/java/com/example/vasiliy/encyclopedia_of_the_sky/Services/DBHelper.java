@@ -11,6 +11,8 @@ public class DBHelper extends SQLiteOpenHelper {
     static final String DB_NAME = "myDB3";
     static final int VERSION = 3;
 
+    DatasForDB datasForDB;
+
     final String LOG_TAG = "myLogs";
 
     //
@@ -50,8 +52,40 @@ public class DBHelper extends SQLiteOpenHelper {
                                                             + ");";
 
 
+    //
+    //  Таблица planets
+    //
+    //
+    // Планеты
+    //
+    public static final String TABLE_NAME_PLANET = "planet";
+    // TNP = TABLE_NAME_PLANET
+    public static final String TITLE_COLUMN_TNP = "title";
+    public static final String INT_ID_COLUMN_TNP = "int_id";
+    public static final String IMG_COLUMN_TNP = "img";
+    public static final String MASS_COLUMN_TNP = "mass";
+    public static final String RADIUS_COLUMN_TNP = "radius";
+    public static final String DAY_COLUMN_TNP = "day";
+    public static final String YEAR_COLUMN_TNP = "year";
+    public static final String RADIUS_SUN_COLUMN_TNP = "radius_sun";
+    public static final String INFO_COLUMN_TNP = "info";
 
-    DatasForDB datasForDB;
+    private static final String CREATE_TABLE_PLANET = "create table " + TABLE_NAME_PLANET +" ("
+                                                    + "id integer primary key autoincrement,"
+                                                    + TITLE_COLUMN_TNP + " text" + ','
+                                                    + INT_ID_COLUMN_TNP + " integer" + ','
+                                                    + IMG_COLUMN_TNP + " text" + ','
+                                                    + MASS_COLUMN_TNP + " text" + ','
+                                                    + RADIUS_COLUMN_TNP + " text" + ','
+                                                    + DAY_COLUMN_TNP + " text" + ','
+                                                    + YEAR_COLUMN_TNP + " text" + ','
+                                                    + RADIUS_SUN_COLUMN_TNP + " text" + ','
+                                                    + INFO_COLUMN_TNP + " text"
+                                                    + ");";
+
+
+
+
 
     public DBHelper(Context context) {
         // конструктор суперкласса
@@ -65,6 +99,7 @@ public class DBHelper extends SQLiteOpenHelper {
         datasForDB = new DatasForDB();
         onCreateTableSkyObjects(db);
         onCreateTableConstelltions(db);
+        onCreateTablePlanets(db);
     }
 
     @Override
@@ -117,13 +152,44 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void onCreateTablePlanets(SQLiteDatabase db) {
+        ContentValues cv = new ContentValues();
+        db.execSQL(CREATE_TABLE_PLANET);
+
+        String[] planetTitle = datasForDB.planetName;
+        int[] planetId = datasForDB.planetId;
+        String[] planetImg = datasForDB.planetImg;
+        String[] planetMass = datasForDB.planetMass;
+        String[] planetRadius = datasForDB.planetRadius;
+        String[] planetDay = datasForDB.planetDay;
+        String[] planetYear = datasForDB.planetYear;
+        String[] planetRadiusSun = datasForDB.planetRadiusSun;
+        String[] planetInfo = datasForDB.planetInfo;
+
+        for(int i = 0; i < planetTitle.length; ++i) {
+            cv.clear();
+            cv.put(TITLE_COLUMN_TNP, planetTitle[i]);
+            cv.put(INT_ID_COLUMN_TNP, planetId[i]);
+            cv.put(IMG_COLUMN_TNP, planetImg[i]);
+            cv.put(MASS_COLUMN_TNP, planetMass[i]);
+            cv.put(RADIUS_COLUMN_TNP, planetRadius[i]);
+            cv.put(DAY_COLUMN_TNP, planetDay[i]);
+            cv.put(YEAR_COLUMN_TNP, planetYear[i]);
+            cv.put(RADIUS_SUN_COLUMN_TNP, planetRadiusSun[i]);
+            cv.put(INFO_COLUMN_TNP, planetInfo[i]);
+            db.insert(TABLE_NAME_PLANET, null, cv);
+        }
+    }
+
     public void onUpdata(SQLiteDatabase db) {
         db.beginTransaction();
         try {
             db.execSQL("drop table " + TABLE_NAME_CONSTELLATION + ";");
             db.execSQL("drop table " + TABLE_NAME_SKY_OBJECTS + ";");
+            db.execSQL("drop table " + TABLE_NAME_PLANET + ";");
             onCreateTableConstelltions(db);
             onCreateTableSkyObjects(db);
+            onCreateTablePlanets(db);
             db.setTransactionSuccessful();
         } finally {
             db.endTransaction();
