@@ -3,6 +3,7 @@ package com.example.vasiliy.encyclopedia_of_the_sky.Activitys;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,12 +13,12 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.example.vasiliy.encyclopedia_of_the_sky.R;
-import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.ConstellationObject;
+import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.PlanetObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBase;
 
 import java.util.List;
 
-public class ConstellationViewActivity extends AppCompatActivity implements TabHost.OnTabChangeListener, View.OnClickListener {
+public class PlanetViewActivity extends AppCompatActivity implements View.OnClickListener, TabHost.OnTabChangeListener {
 
     final String TABS_TAG_1 = "Tab 1";
     final String TABS_TAG_2 = "Tab 2";
@@ -33,7 +34,7 @@ public class ConstellationViewActivity extends AppCompatActivity implements TabH
     ScrollView svTab1;
     ScrollView svTab2;
 
-    private ConstellationObject constellationObject;
+    private PlanetObject planetObject;
     private boolean isChangeTab1;
     private boolean isChangeTab2;
 
@@ -47,7 +48,7 @@ public class ConstellationViewActivity extends AppCompatActivity implements TabH
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_constellation_view);
+        setContentView(R.layout.activity_planet_view);
 
         tabHost = (TabHost) findViewById(R.id.tabHost);
         tabHost.setup();
@@ -82,11 +83,11 @@ public class ConstellationViewActivity extends AppCompatActivity implements TabH
         dataBase = new SkyDataBase(this);
 
         Intent intent = getIntent();
-        int idConstellation = Integer.valueOf(intent.getStringExtra("id_constellation"));
+        int idPlanet = Integer.valueOf(intent.getStringExtra("id_planet"));
 
-        constellationObject = dataBase.getConstellationById(idConstellation);
+        planetObject = dataBase.getPlanetById(idPlanet);
 
-        idList = dataBase.getConstellationIdList();
+        idList = dataBase.getPlanetIdList();
         isChangeTab1 = true;
         isChangeTab2 = true;
 
@@ -97,6 +98,7 @@ public class ConstellationViewActivity extends AppCompatActivity implements TabH
 
         btnNext = (Button) findViewById(R.id.btnNext);
         btnNext.setOnClickListener(this);
+
     }
 
     private void setContentIntoTab1() {
@@ -108,11 +110,10 @@ public class ConstellationViewActivity extends AppCompatActivity implements TabH
         }
         if(isChangeTab1) {
             svTab1.scrollTo(0, 0);
-            tvTitle.setText(constellationObject.getName());
-            tvTextOnTab1.setText(constellationObject.getTextWhereFrom());
+            tvTitle.setText(planetObject.getName());
+            //tvTextOnTab1.setText(planetObject.getTextWhereFrom());
             svTab2 = (ScrollView) findViewById(R.id.svTab2Stiry1);
-
-            int imageId = ConstellationViewActivity.this.getResources().getIdentifier(constellationObject.getImg(), "drawable", getPackageName());
+            int imageId = PlanetViewActivity.this.getResources().getIdentifier(planetObject.getImg(), "drawable", getPackageName());
             imgView.setImageDrawable(getResources().getDrawable(imageId));
             isChangeTab1 = false;
         }
@@ -128,8 +129,8 @@ public class ConstellationViewActivity extends AppCompatActivity implements TabH
         }
         if(isChangeTab2) {
             svTab2.scrollTo(0, 0);
-            tvTitle2.setText(constellationObject.getName());
-            tvTextOnTab2.setText(constellationObject.getTextInf());
+            tvTitle2.setText(planetObject.getName());
+            //tvTextOnTab2.setText(planetObject.getTextInf());
             isChangeTab2 = false;
         }
         lineInBat2.setBackgroundColor(getResources().getColor(R.color.line_selected_color));
@@ -162,7 +163,7 @@ public class ConstellationViewActivity extends AppCompatActivity implements TabH
 
     @Override
     public void onClick(View v) {
-        int i = idList.indexOf(constellationObject.getInt_id());
+        int i = idList.indexOf(planetObject.getInt_id());
         switch(v.getId()) {
             case R.id.btnPrev:
                 --i;
@@ -177,7 +178,7 @@ public class ConstellationViewActivity extends AppCompatActivity implements TabH
                 }
                 break;
         }
-        constellationObject = dataBase.getConstellationById(idList.get(i));
+        planetObject = dataBase.getPlanetById(idList.get(i));
         isChangeTab1 = true;
         isChangeTab2 = true;
         if(tabHost.getCurrentTab() == 0) {
@@ -186,4 +187,7 @@ public class ConstellationViewActivity extends AppCompatActivity implements TabH
             setContentIntoTab2();
         }
     }
+
+
+
 }

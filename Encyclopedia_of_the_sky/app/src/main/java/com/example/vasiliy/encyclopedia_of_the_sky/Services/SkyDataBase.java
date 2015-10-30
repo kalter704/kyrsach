@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.ConstellationObject;
+import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.PlanetObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.SkyObject;
 
 import java.util.ArrayList;
@@ -68,9 +69,9 @@ public class SkyDataBase {
         return list;
     }
 
-    public List<ConstellationObject> getListConstellationSimply() {
+    public List<SkyObject> getListConstellationSimply() {
         this.open();
-        List<ConstellationObject> list = new ArrayList<>();
+        List<SkyObject> list = new ArrayList<>();
 
         Cursor c;
 
@@ -143,6 +144,93 @@ public class SkyDataBase {
         logCursor(c);
 
         int intIdColIndex = c.getColumnIndex(dbh.INT_ID_COLUMN_TNC);
+
+        if(c.moveToFirst()) {
+            do {
+                list.add(c.getInt(intIdColIndex));
+            } while(c.moveToNext());
+        }
+        this.close();
+        return list;
+    }
+
+    public List<SkyObject> getListPlanetsSimply() {
+        this.open();
+        List<SkyObject> list = new ArrayList<>();
+
+        Cursor c;
+
+        String[] columns = {dbh.TITLE_COLUMN_TNP, dbh.INT_ID_COLUMN_TNP};
+        c = db.query(dbh.TABLE_NAME_PLANET, columns, null, null, null, null, dbh.TITLE_COLUMN_TNP);
+
+        logCursor(c);
+
+        int nameColIndex = c.getColumnIndex(dbh.TITLE_COLUMN_TNP);
+        int intIdColIndex = c.getColumnIndex(dbh.INT_ID_COLUMN_TNP);
+
+        if(c.moveToFirst()) {
+            do {
+                PlanetObject temp = new PlanetObject(c.getString(nameColIndex), c.getInt(intIdColIndex));
+                list.add(temp);
+            } while(c.moveToNext());
+        }
+
+        this.close();
+        return list;
+    }
+
+    public PlanetObject getPlanetById(int id) {
+        this.open();
+        Cursor c;
+
+        String[] columns = {
+                dbh.TITLE_COLUMN_TNP,
+                dbh.INT_ID_COLUMN_TNP,
+                dbh.IMG_COLUMN_TNP,
+                dbh.MASS_COLUMN_TNP,
+                dbh.RADIUS_COLUMN_TNP,
+                dbh.DAY_COLUMN_TNP,
+                dbh.YEAR_COLUMN_TNP,
+                dbh.RADIUS_SUN_COLUMN_TNP,
+                dbh.INFO_COLUMN_TNP
+        };
+
+        String where = dbh.INT_ID_COLUMN_TNP + " = ?";
+
+        String[] arg = { String.valueOf(id) };
+
+        c = db.query(dbh.TABLE_NAME_PLANET, columns, where, arg, null, null, null);
+
+        logCursor(c);
+
+        c.moveToFirst();
+        PlanetObject planetObject = new PlanetObject(
+                c.getString(c.getColumnIndex(dbh.TITLE_COLUMN_TNP)),
+                c.getInt(c.getColumnIndex(dbh.INT_ID_COLUMN_TNP)),
+                c.getString(c.getColumnIndex(dbh.IMG_COLUMN_TNP)),
+                c.getString(c.getColumnIndex(dbh.MASS_COLUMN_TNP)),
+                c.getString(c.getColumnIndex(dbh.RADIUS_COLUMN_TNP)),
+                c.getString(c.getColumnIndex(dbh.DAY_COLUMN_TNP)),
+                c.getString(c.getColumnIndex(dbh.YEAR_COLUMN_TNP)),
+                c.getString(c.getColumnIndex(dbh.RADIUS_SUN_COLUMN_TNP)),
+                c.getString(c.getColumnIndex(dbh.INFO_COLUMN_TNP))
+        );
+        this.close();
+        return planetObject;
+    }
+
+    public List<Integer> getPlanetIdList() {
+        List<Integer> list = new ArrayList<>();
+        this.open();
+        Cursor c;
+
+        String[] columns = { dbh.INT_ID_COLUMN_TNP };
+
+        c = db.query(dbh.TABLE_NAME_PLANET, columns, null, null, null, null, dbh.TITLE_COLUMN_TNP);
+
+        logCursor(c);
+
+        int intIdColIndex = c.getColumnIndex(dbh.INT_ID_COLUMN_TNP);
 
         if(c.moveToFirst()) {
             do {

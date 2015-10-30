@@ -61,11 +61,17 @@ public class EncyclopediaActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         Log.d(TAG_CLICK, "Click " + v.getId());
+        Intent intent = new Intent(EncyclopediaActivity.this, ObjectsListActivity.class);
         switch(v.getId()) {
             case 101:
                 Log.d(TAG_CLICK, "Созвездия");
-                startActivity(new Intent(EncyclopediaActivity.this, ConstellationListActivity.class));
+                intent.putExtra("ObjectType", "Созвездия");
+                break;
+            case 102:
+                Log.d(TAG_CLICK, "Планеты");
+                intent.putExtra("ObjectType", "Планеты");
                 break;
         }
+        startActivity(intent);
     }
 }

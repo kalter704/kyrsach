@@ -11,12 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.vasiliy.encyclopedia_of_the_sky.R;
-import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.ConstellationObject;
+import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.SkyObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBase;
 
 import java.util.List;
 
-public class ConstellationListActivity extends AppCompatActivity implements View.OnClickListener {
+public class ObjectsListActivity extends AppCompatActivity implements View.OnClickListener {
 
     final String TAG_CLICK = "myClick";
 
@@ -29,18 +29,29 @@ public class ConstellationListActivity extends AppCompatActivity implements View
 
         dataBase = new SkyDataBase(this);
 
-        List<ConstellationObject> listConstellation = dataBase.getListConstellationSimply();
+        Intent intent = getIntent();
+        String objectType = intent.getStringExtra("ObjectType");
+
+        List<SkyObject> listSkyObjects = null;
+
+        if("Созвездия".equals(objectType)) {
+            listSkyObjects = dataBase.getListConstellationSimply();
+        }
+        if("Планеты".equals(objectType)){
+            listSkyObjects = dataBase.getListPlanetsSimply();
+        }
+
 
         LinearLayout linLayout = (LinearLayout) findViewById(R.id.linLayout);
         LayoutInflater ltInflater = getLayoutInflater();
 
-        for(ConstellationObject constellationObj: listConstellation) {
+        for(SkyObject skyObject: listSkyObjects) {
 
             View item = ltInflater.inflate(R.layout.list_item_text, linLayout, false);
             TextView tvName = (TextView) item.findViewById(R.id.tvName);
-            tvName.setText(constellationObj.getName());
+            tvName.setText(skyObject.getName());
 
-            item.setId(constellationObj.getInt_id());
+            item.setId(skyObject.getInt_id());
             item.setOnClickListener(this);
 
             item.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
@@ -51,8 +62,17 @@ public class ConstellationListActivity extends AppCompatActivity implements View
     @Override
     public void onClick(View v) {
         Log.d(TAG_CLICK, "Click " + v.getId());
-        Intent intent = new Intent(ConstellationListActivity.this, ConstellationViewActivity.class);
-        intent.putExtra("id_constellation", String.valueOf(v.getId()));
-        startActivity(intent);
+        int viewId = v.getId();
+        if(viewId > 150 && viewId < 201) {
+            Intent intent = new Intent(ObjectsListActivity.this, ConstellationViewActivity.class);
+            intent.putExtra("id_constellation", String.valueOf(v.getId()));
+            startActivity(intent);
+        }
+        if(viewId > 200 && viewId < 251) {
+            Intent intent = new Intent(ObjectsListActivity.this, PlanetViewActivity.class);
+            intent.putExtra("id_planet", String.valueOf(v.getId()));
+            startActivity(intent);
+        }
+
     }
 }

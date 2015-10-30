@@ -55,9 +55,6 @@ public class DBHelper extends SQLiteOpenHelper {
     //
     //  Таблица planets
     //
-    //
-    // Планеты
-    //
     public static final String TABLE_NAME_PLANET = "planet";
     // TNP = TABLE_NAME_PLANET
     public static final String TITLE_COLUMN_TNP = "title";
@@ -84,9 +81,6 @@ public class DBHelper extends SQLiteOpenHelper {
                                                     + ");";
 
 
-
-
-
     public DBHelper(Context context) {
         // конструктор суперкласса
         super(context, DB_NAME, null, VERSION);
@@ -105,6 +99,21 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpdata(db);
+    }
+
+    public void onUpdata(SQLiteDatabase db) {
+        db.beginTransaction();
+        try {
+            db.execSQL("drop table " + TABLE_NAME_CONSTELLATION + ";");
+            db.execSQL("drop table " + TABLE_NAME_SKY_OBJECTS + ";");
+            db.execSQL("drop table " + TABLE_NAME_PLANET + ";");
+            onCreateTableConstelltions(db);
+            onCreateTableSkyObjects(db);
+            onCreateTablePlanets(db);
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
     }
 
     //
@@ -152,6 +161,9 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    //
+    // Планеты
+    //
     public void onCreateTablePlanets(SQLiteDatabase db) {
         ContentValues cv = new ContentValues();
         db.execSQL(CREATE_TABLE_PLANET);
@@ -181,18 +193,4 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void onUpdata(SQLiteDatabase db) {
-        db.beginTransaction();
-        try {
-            db.execSQL("drop table " + TABLE_NAME_CONSTELLATION + ";");
-            db.execSQL("drop table " + TABLE_NAME_SKY_OBJECTS + ";");
-            db.execSQL("drop table " + TABLE_NAME_PLANET + ";");
-            onCreateTableConstelltions(db);
-            onCreateTableSkyObjects(db);
-            onCreateTablePlanets(db);
-            db.setTransactionSuccessful();
-        } finally {
-            db.endTransaction();
-        }
-    }
 }
