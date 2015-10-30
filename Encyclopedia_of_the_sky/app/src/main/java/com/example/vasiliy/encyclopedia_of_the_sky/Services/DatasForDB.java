@@ -45,7 +45,7 @@ public class DatasForDB {
     public String[] planetName = { "Венера", "Марс", "Нептун" };
     public int[] planetId = { 201, 202, 203 };
     public String[] planetImg = { "planet_venera", "planet_mars", "planet_neptyn" };
-    public String[] planetMass = { "4,8685*10^24 кг", "6,4185*10^23", "1,0243·1026" };
+    public String[] planetMass = { "4,8685*10^24 кг", "6,4185*10^23 кг", "1,0243·10^26 кг" };
     public String[] planetRadius = { "6051,8 ± 1,0 км", "3389,5 км", "24 341 ± 30 км" };
     public String[] planetDay = { "116д 18ч 0м", "1.6597д", "0,6653д" };
     public String[] planetYear = { "225 дней", "687 суток", "164,8 года" };

@@ -18,17 +18,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activitys.EncyclopediaActivity"
-            android:screenOrientation="portrait"></activity>
+            android:name=".Activitys.Encyclopedia.EncyclopediaActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".Activitys.ObjectsListActivity"
-            android:screenOrientation="portrait"></activity>
+            android:name=".Activitys.Encyclopedia.ObjectsListActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".Activitys.ConstellationViewActivity"
+            android:name=".Activitys.Encyclopedia.ConstellationViewActivity"
             android:label="@string/title_activity_constellation_view"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".Activitys.PlanetViewActivity"
+            android:name=".Activitys.Encyclopedia.PlanetViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activitys.Game.GameMenuActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 

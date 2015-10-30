@@ -1,4 +1,4 @@
-package com.example.vasiliy.encyclopedia_of_the_sky.Activitys;
+package com.example.vasiliy.encyclopedia_of_the_sky.Activitys.Encyclopedia;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

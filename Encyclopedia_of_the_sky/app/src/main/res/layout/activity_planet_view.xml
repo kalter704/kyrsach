@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.vasiliy.encyclopedia_of_the_sky.Activitys.ConstellationViewActivity">
+    tools:context="com.example.vasiliy.encyclopedia_of_the_sky.Activitys.Encyclopedia.ConstellationViewActivity">
 
     <LinearLayout
         android:id="@+id/myLinId"

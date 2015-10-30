@@ -70,4 +70,33 @@
         <item name="android:layout_height">8dp</item>
     </style>
 
+    <style name="linearlayout_for_btns_gamemenu_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_marginBottom">50dp</item>
+    </style>
+
+    <style name="lable_name_gamemenu_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#FFD261</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="text_view_in_planet_view_style">
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="labels_in_planet_view_style" parent="text_view_in_planet_view_style">
+        <item name="android:layout_marginRight">5dp</item>
+    </style>
+
+    <style name="row_in_palnet_view_style">
+        <item name="android:layout_marginBottom">5dp</item>
+    </style>
+
 </resources>

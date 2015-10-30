@@ -9,6 +9,13 @@
     <string name="help_btn_main">Помошь</string>
     <string name="game_btn_main">Игра</string>
     <string name="settings_btn_main">Настройки</string>
+
+    <string name="game_text">Викторина</string>
+    <string name="new_game_gamemenu">Начать игру</string>
+    <string name="statistica_gamemenu">Статистика</string>
+    <string name="login_gamemenu">Войти</string>
+    <string name="user_name_gamemenu">Имя:</string>
+
     <string name="title_activity_constellation_list">ConstellationListActivity</string>
     <string name="title_activity_constellation_view">ConstellationViewActivity</string>
 

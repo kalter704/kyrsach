@@ -1,9 +1,8 @@
-package com.example.vasiliy.encyclopedia_of_the_sky.Activitys;
+package com.example.vasiliy.encyclopedia_of_the_sky.Activitys.Encyclopedia;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,9 +24,9 @@ public class PlanetViewActivity extends AppCompatActivity implements View.OnClic
 
     TabHost tabHost;
     TextView tvTitle;
-    TextView tvTextOnTab1;
     TextView tvTitle2;
-    TextView tvTextOnTab2;
+    TextView tv3, tv5, tv7, tv9, tv11;
+    TextView tvInfo;
     ImageView imgView;
     Button btnPrev;
     Button btnNext;
@@ -59,7 +58,7 @@ public class PlanetViewActivity extends AppCompatActivity implements View.OnClic
         tabSpec.setContent(TabFactory);
         View tab_header1 = getLayoutInflater().inflate(R.layout.tab_1_header_1, null);
         TextView tvTextInHeadTab1 = (TextView) tab_header1.findViewById(R.id.tvTab1Header);
-        tvTextInHeadTab1.setText("Информация");
+        tvTextInHeadTab1.setText("Характеристики");
         tabSpec.setIndicator(tab_header1);
         tabHost.addTab(tabSpec);
 
@@ -67,7 +66,7 @@ public class PlanetViewActivity extends AppCompatActivity implements View.OnClic
         tabSpec.setContent(TabFactory);
         View tab_header2 = getLayoutInflater().inflate(R.layout.tab_2_header_1, null);
         TextView tvTextInHeadTab2 = (TextView) tab_header2.findViewById(R.id.tvTab2Header);
-        tvTextInHeadTab2.setText("История");
+        tvTextInHeadTab2.setText("Информация");
         tabSpec.setIndicator(tab_header2);
         tabHost.addTab(tabSpec);
 
@@ -102,16 +101,32 @@ public class PlanetViewActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void setContentIntoTab1() {
-        if(tvTitle == null || tvTextOnTab1 == null || imgView == null || svTab1 == null) {
+        if(tvTitle == null ||
+                imgView == null ||
+                svTab1 == null ||
+                tv3 == null ||
+                tv5 == null ||
+                tv7 == null ||
+                tv9 == null ||
+                tv11 == null
+                ) {
             tvTitle = (TextView) findViewById(R.id.tvTitleInTab1);
-            tvTextOnTab1 = (TextView) findViewById(R.id.tvTextWhereInTab1);
+            tv3 = (TextView) findViewById(R.id.textView3);
+            tv5 = (TextView) findViewById(R.id.textView5);
+            tv7 = (TextView) findViewById(R.id.textView7);
+            tv9 = (TextView) findViewById(R.id.textView9);
+            tv11 = (TextView) findViewById(R.id.textView11);
             imgView = (ImageView) findViewById(R.id.imgInTab1);
             svTab1 = (ScrollView) findViewById(R.id.svTab1Inf1);
         }
         if(isChangeTab1) {
             svTab1.scrollTo(0, 0);
             tvTitle.setText(planetObject.getName());
-            //tvTextOnTab1.setText(planetObject.getTextWhereFrom());
+            tv3.setText(planetObject.getMass());
+            tv5.setText(planetObject.getRadius());
+            tv7.setText(planetObject.getDay());
+            tv9.setText(planetObject.getYear());
+            tv11.setText(planetObject.getRadiusSun());
             svTab2 = (ScrollView) findViewById(R.id.svTab2Stiry1);
             int imageId = PlanetViewActivity.this.getResources().getIdentifier(planetObject.getImg(), "drawable", getPackageName());
             imgView.setImageDrawable(getResources().getDrawable(imageId));
@@ -122,15 +137,15 @@ public class PlanetViewActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void setContentIntoTab2() {
-        if(tvTitle2 == null || tvTextOnTab2 == null) {
+        if(tvTitle2 == null || tvInfo == null) {
             tvTitle2 = (TextView) findViewById(R.id.tvTitleInTab2);
-            tvTextOnTab2 = (TextView) findViewById(R.id.tvTextInTab2);
+            tvInfo = (TextView) findViewById(R.id.tvTextInTab2);
             svTab2 = (ScrollView) findViewById(R.id.svTab2Stiry1);
         }
         if(isChangeTab2) {
             svTab2.scrollTo(0, 0);
             tvTitle2.setText(planetObject.getName());
-            //tvTextOnTab2.setText(planetObject.getTextInf());
+            tvInfo.setText(planetObject.getInfo());
             isChangeTab2 = false;
         }
         lineInBat2.setBackgroundColor(getResources().getColor(R.color.line_selected_color));
@@ -142,10 +157,10 @@ public class PlanetViewActivity extends AppCompatActivity implements View.OnClic
         public View createTabContent(String tag) {
             View view = null;
             if (tag.equals(TABS_TAG_1)) {
-                view = getLayoutInflater().inflate(R.layout.tab_1_inf_1, null);
+                view = getLayoutInflater().inflate(R.layout.tab_1_inf_2, null);
             }
             if (tag.equals(TABS_TAG_2)) {
-                view = getLayoutInflater().inflate(R.layout.tab_2_story_1, null);
+                view = getLayoutInflater().inflate(R.layout.tab_2_story_2, null);
             }
             return view;
         }

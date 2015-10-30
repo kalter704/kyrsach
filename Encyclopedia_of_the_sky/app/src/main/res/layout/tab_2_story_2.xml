@@ -36,7 +36,7 @@
                 android:layout_below="@+id/tvTitleInTab22"
                 android:layout_gravity="center_horizontal|bottom"
                 android:paddingBottom="5dp"
-                android:paddingLeft="5dp"
+                android:paddingLeft="7dp"
                 android:paddingRight="5dp"
                 android:text="temp Text"
                 android:textSize="18dp" />
