@@ -29,37 +29,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayoutUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/linearlayout_bg"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:layout_marginBottom="15dp"
-        android:layout_above="@+id/linearLayout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                style="@style/lable_name_gamemenu_style"
-                android:text="@string/user_name_gamemenu"
-                android:layout_marginRight="4dp"
-                android:id="@+id/textView" />
-
-            <TextView
-                android:id="@+id/user_name"
-                style="@style/lable_name_gamemenu_style"
-                android:text="Noname" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/linearLayout"
         style="@style/linearlayout_for_btns_gamemenu_style"
         android:background="@drawable/linearlayout_bg">
@@ -71,13 +40,7 @@
             android:text="@string/new_game_gamemenu" />
 
         <Button
-            android:id="@+id/login_btn"
-            style="@style/game_btn_main_style"
-            android:background="@drawable/btn_bg_main"
-            android:text="@string/login_gamemenu" />
-
-        <Button
-            android:id="@+id/settings_btn_main"
+            android:id="@+id/statistica_btn"
             style="@style/help_btn_main_style"
             android:background="@drawable/btn_bg_main"
             android:text="@string/statistica_gamemenu" />

@@ -24,5 +24,8 @@
 
     <string name="next_page">Следующий --&gt;</string>
     <string name="prev_page">&lt;-- Предыдущий</string>
+    <string name="title_activity_game">GameActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_statistics">StatisticsActivity</string>
 
 </resources>

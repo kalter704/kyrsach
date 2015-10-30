@@ -15,9 +15,10 @@
 
     <style name="total_background">
         <item name="android:background">@color/color_background</item>
+        <!--<item name="android:background">@drawable/background_hello_activity</item>-->
     </style>
 
-    <style name="btns_main_style" >
+    <style name="btns_main_style">
         <item name="android:padding">10dp</item>
         <item name="android:textSize">15sp</item>
         <item name="android:layout_width">175dp</item>
@@ -57,6 +58,7 @@
     </style>
 
     <style name="MyAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="MyAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="text_view_in_tabs_style">
@@ -74,10 +76,10 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_centerVertical">true</item>
         <item name="android:orientation">vertical</item>
         <item name="android:padding">10dp</item>
-        <item name="android:layout_marginBottom">50dp</item>
+        <!--<item name="android:layout_marginBottom">50dp</item>-->
     </style>
 
     <style name="lable_name_gamemenu_style">

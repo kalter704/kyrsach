@@ -72,6 +72,9 @@ public class EncyclopediaActivity extends AppCompatActivity implements View.OnCl
                 intent.putExtra("ObjectType", "Планеты");
                 break;
         }
-        startActivity(intent);
+        int id = v.getId();
+        if(101 == id || 102 == id) {
+            startActivity(intent);
+        }
     }
 }
