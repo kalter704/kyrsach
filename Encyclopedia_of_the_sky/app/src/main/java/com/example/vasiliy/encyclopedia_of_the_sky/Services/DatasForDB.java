@@ -2,11 +2,20 @@ package com.example.vasiliy.encyclopedia_of_the_sky.Services;
 
 public class DatasForDB {
     //
+    // Темы для игры
+    //
+    public String[] themes = {"Созвездия", "Планеты"};
+    public int[] intId = {        101,         102};
+    //public String[] themes = {"Созвездия", "Планеты", "Планеты", "Планеты", "Планеты", "Планеты", "Планеты", "Планеты", "Планеты", "Планеты"};
+    //public int[] intId = {        101,         102,         102   ,         102   ,         102   ,         102   ,         102   ,         102   ,         102   ,         102      };
+
+
+    //
     // Все объекты
     //
-    public String[] sky_objects = {"Созвездия", "Планеты", "Звезды", "Звездные скопления", "Туманности", "Черные дыры", "Галактики", "Остероиды и кометы", "Темная материя"};
-    public int[] sky_objects_id = {    101,        102,       103,           104, 105, 106, 107, 108, 109, 110};
-    public String[] sky_objetcs_img = {"constellation_main", "main_list_planet", "main_list_star", "main_build_black_36dp", "main_list_planet", "main_build_black_36dp", "main_list_planet", "main_list_star", "main_build_black_36dp"};
+    public String[] skyObjects = {"Созвездия", "Планеты", "Звезды", "Звездные скопления", "Туманности", "Черные дыры", "Галактики", "Остероиды и кометы", "Темная материя"};
+    public int[] skyObjectsId = {    101,        102,       103,           104,               105,           106,          107,              108,              109};
+    public String[] skyObjetcsImg = {"constellation_main", "main_list_planet", "main_list_star", "main_build_black_36dp", "main_list_planet", "main_build_black_36dp", "main_list_planet", "main_list_star", "main_build_black_36dp"};
 
 
     //
@@ -43,7 +52,7 @@ public class DatasForDB {
     // Планеты, экзопланеты и карликовые планеты
     //
     public String[] planetName = { "Венера", "Марс", "Нептун" };
-    public int[] planetId = { 201, 202, 203 };
+    public int[] planetId = {         201,     202,    203 };
     public String[] planetImg = { "planet_venera", "planet_mars", "planet_neptyn" };
     public String[] planetMass = { "4,8685*10^24 кг", "6,4185*10^23 кг", "1,0243·10^26 кг" };
     public String[] planetRadius = { "6051,8 ± 1,0 км", "3389,5 км", "24 341 ± 30 км" };

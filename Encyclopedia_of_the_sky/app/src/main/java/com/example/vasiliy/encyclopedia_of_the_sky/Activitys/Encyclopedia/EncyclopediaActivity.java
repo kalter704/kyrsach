@@ -48,7 +48,7 @@ public class EncyclopediaActivity extends AppCompatActivity implements View.OnCl
             ImageView imgView = (ImageView) item.findViewById(R.id.imageView);
             imgView.setImageDrawable(getResources().getDrawable(imageId));
 
-            item.setId(skyOb.getInt_id());
+            item.setId(skyOb.getIntId());
             item.setOnClickListener(this);
             //Log.d(TAG_CLICK, String.valueOf(item.getId()));
 

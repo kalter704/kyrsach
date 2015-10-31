@@ -30,7 +30,7 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
         Intent intent = null;
         switch(v.getId()) {
             case R.id.new_game_btn:
-                intent = new Intent(GameMenuActivity.this, GameActivity.class);
+                intent = new Intent(GameMenuActivity.this, ChoiceGameActivity.class);
                 break;
             case R.id.statistica_btn:
                 intent = new Intent(GameMenuActivity.this, StatisticsActivity.class);

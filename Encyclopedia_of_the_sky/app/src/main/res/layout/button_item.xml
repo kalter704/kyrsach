@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<Button
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/btnTheme"
+    style="@style/game_btn_main_style"
+    android:background="@drawable/btn_bg_main"
+    android:text="tempText" />
+
+    <!--
+    <FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="65dp"
+    android:layout_marginTop="10dp"
+    android:paddingLeft="5dp"
+    android:background="@drawable/btn_bg_main">
+    </FrameLayout>
+    -->

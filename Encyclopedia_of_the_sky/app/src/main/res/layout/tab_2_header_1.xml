@@ -16,7 +16,6 @@
         android:id="@+id/lineInTab2"
         style="@style/line_view_in_tabs_style"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:background="@drawable/tab_bg_line_no_selected"></LinearLayout>
+        android:layout_width="match_parent"></LinearLayout>
 
 </LinearLayout>

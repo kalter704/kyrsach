@@ -178,7 +178,7 @@ public class PlanetViewActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        int i = idList.indexOf(planetObject.getInt_id());
+        int i = idList.indexOf(planetObject.getIntId());
         switch(v.getId()) {
             case R.id.btnPrev:
                 --i;

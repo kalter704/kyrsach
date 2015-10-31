@@ -51,7 +51,7 @@ public class ObjectsListActivity extends AppCompatActivity implements View.OnCli
             TextView tvName = (TextView) item.findViewById(R.id.tvName);
             tvName.setText(skyObject.getName());
 
-            item.setId(skyObject.getInt_id());
+            item.setId(skyObject.getIntId());
             item.setOnClickListener(this);
 
             item.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;

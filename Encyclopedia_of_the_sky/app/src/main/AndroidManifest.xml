@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.vasiliy.encyclopedia_of_the_sky" >
+    package="com.example.vasiliy.encyclopedia_of_the_sky">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/MyAppTheme" >
+        android:theme="@style/MyAppTheme">
         <activity
             android:name=".Activitys.MainActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,12 +35,18 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activitys.Game.GameActivity"
-            android:label="@string/title_activity_game" >
-        </activity>
+            android:label="@string/title_activity_game"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activitys.Game.StatisticsActivity"
-            android:label="@string/title_activity_statistics" >
-        </activity>
+            android:label="@string/title_activity_statistics"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activitys.Game.GameOverActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activitys.Game.ChoiceGameActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

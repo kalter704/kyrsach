@@ -162,7 +162,7 @@ public class ConstellationViewActivity extends AppCompatActivity implements TabH
 
     @Override
     public void onClick(View v) {
-        int i = idList.indexOf(constellationObject.getInt_id());
+        int i = idList.indexOf(constellationObject.getIntId());
         switch(v.getId()) {
             case R.id.btnPrev:
                 --i;

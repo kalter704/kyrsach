@@ -2,7 +2,6 @@ package com.example.vasiliy.encyclopedia_of_the_sky.Services;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -14,6 +13,21 @@ public class DBHelper extends SQLiteOpenHelper {
     DatasForDB datasForDB;
 
     final String LOG_TAG = "myLogs";
+
+    //
+    // Таблица themes
+    //
+    public static final String TABLE_NAME_THEMES = "themes";
+    // TNT = TABLE_NAME_THEMES
+    public static final String TITLE_COLUMN_TNT = "title";
+    public static final String INT_ID_COLUMN_TNT = "int_id";
+
+    private static final String CREATE_TABLE_THEMES = "create table " + TABLE_NAME_THEMES + " ("
+            + "id integer primary key autoincrement,"
+            + TITLE_COLUMN_TNT + " text" + ','
+            + INT_ID_COLUMN_TNT + " integer"
+            + ");";
+
 
     //
     // Таблица sky_objects
@@ -31,6 +45,8 @@ public class DBHelper extends SQLiteOpenHelper {
                                                             + INT_ID_COLUMN_TNSO + " integer" + ','
                                                             + IMG_COLUMN_TNSO + " text"
                                                             + ");";
+
+
     //
     // Таблица constellation
     //
@@ -90,10 +106,10 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d(LOG_TAG, "--- onCreate database ---");
-        datasForDB = new DatasForDB();
         onCreateTableSkyObjects(db);
         onCreateTableConstelltions(db);
         onCreateTablePlanets(db);
+        onCreateTableThemes(db);
     }
 
     @Override
@@ -107,9 +123,13 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("drop table " + TABLE_NAME_CONSTELLATION + ";");
             db.execSQL("drop table " + TABLE_NAME_SKY_OBJECTS + ";");
             db.execSQL("drop table " + TABLE_NAME_PLANET + ";");
+            db.execSQL("drop table " + TABLE_NAME_THEMES + ";");
+            /*
             onCreateTableConstelltions(db);
             onCreateTableSkyObjects(db);
             onCreateTablePlanets(db);
+            */
+            onCreate(db);
             db.setTransactionSuccessful();
         } finally {
             db.endTransaction();
@@ -117,22 +137,41 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //
+    // Создание и заполнение themes
+    //
+    private void onCreateTableThemes(SQLiteDatabase db) {
+        ContentValues cv = new ContentValues();
+
+        db.execSQL(CREATE_TABLE_THEMES);
+
+        String[] themes = datasForDB.themes;
+        int[] intId= datasForDB.intId;
+
+        for(int i = 0; i < themes.length; ++i) {
+            cv.clear();
+            cv.put(TITLE_COLUMN_TNT, themes[i]);
+            cv.put(INT_ID_COLUMN_TNT, intId[i]);
+            db.insert(TABLE_NAME_THEMES, null, cv);
+        }
+    }
+
+    //
     // Создание и заполнение sky_objects
     //
-    protected void onCreateTableSkyObjects(SQLiteDatabase db) {
+    private void onCreateTableSkyObjects(SQLiteDatabase db) {
         ContentValues cv = new ContentValues();
 
         db.execSQL(CREATE_TABLE_SKY_OBJECTS);
 
-        String[] sky_objects = datasForDB.sky_objects;
-        int[] sky_object_int_id = datasForDB.sky_objects_id;
-        String[] sky_object_img = datasForDB.sky_objetcs_img;
+        String[] skyObjects = datasForDB.skyObjects;
+        int[] skyObjectIntId = datasForDB.skyObjectsId;
+        String[] skyObjectImg = datasForDB.skyObjetcsImg;
 
-        for(int i = 0; i < sky_objects.length; ++i) {
+        for(int i = 0; i < skyObjects.length; ++i) {
             cv.clear();
-            cv.put(TITLE_COLUMN_TNSO, sky_objects[i]);
-            cv.put(INT_ID_COLUMN_TNSO, sky_object_int_id[i]);
-            cv.put(IMG_COLUMN_TNSO, sky_object_img[i]);
+            cv.put(TITLE_COLUMN_TNSO, skyObjects[i]);
+            cv.put(INT_ID_COLUMN_TNSO, skyObjectIntId[i]);
+            cv.put(IMG_COLUMN_TNSO, skyObjectImg[i]);
             db.insert(TABLE_NAME_SKY_OBJECTS, null, cv);
         }
     }
@@ -140,7 +179,7 @@ public class DBHelper extends SQLiteOpenHelper {
     //
     // Создание и заполнение constellation
     //
-    public void onCreateTableConstelltions(SQLiteDatabase db) {
+    private void onCreateTableConstelltions(SQLiteDatabase db) {
         ContentValues cv = new ContentValues();
         db.execSQL(CREATE_TABLE_CONSTELLATION);
 
@@ -164,7 +203,7 @@ public class DBHelper extends SQLiteOpenHelper {
     //
     // Планеты
     //
-    public void onCreateTablePlanets(SQLiteDatabase db) {
+    private void onCreateTablePlanets(SQLiteDatabase db) {
         ContentValues cv = new ContentValues();
         db.execSQL(CREATE_TABLE_PLANET);
 

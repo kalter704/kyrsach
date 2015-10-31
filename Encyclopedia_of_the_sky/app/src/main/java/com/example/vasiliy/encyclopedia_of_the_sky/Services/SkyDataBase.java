@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.ConstellationObject;
+import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.MyObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.PlanetObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.SkyObject;
 
@@ -237,6 +238,28 @@ public class SkyDataBase {
                 list.add(c.getInt(intIdColIndex));
             } while(c.moveToNext());
         }
+        this.close();
+        return list;
+    }
+
+    public List<MyObject> getThemes() {
+        this.open();
+        List<MyObject> list = new ArrayList<>();
+
+        Cursor c;
+
+        c = db.query(dbh.TABLE_NAME_THEMES, null, null, null, null, null, null);
+
+        logCursor(c);
+
+        if(c.moveToFirst()) {
+            do {
+                MyObject temp = new MyObject(c.getString(c.getColumnIndex(dbh.TITLE_COLUMN_TNT)), c.getInt(c.getColumnIndex(dbh.INT_ID_COLUMN_TNT)));
+                list.add(temp);
+            } while(c.moveToNext());
+        }
+
+        c.close();
         this.close();
         return list;
     }

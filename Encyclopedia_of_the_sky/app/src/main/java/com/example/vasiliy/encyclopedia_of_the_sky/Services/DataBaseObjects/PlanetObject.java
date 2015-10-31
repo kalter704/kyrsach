@@ -8,17 +8,17 @@ public class PlanetObject extends SkyObject{
     private String radiusSun;
     private String info;
 
-    public PlanetObject(String name, int int_id) {
-        super(name, int_id);
+    public PlanetObject(String name, int intId) {
+        super(name, intId);
     }
 
-    public PlanetObject(String name, int int_id, String img) {
-        super(name, int_id, img);
+    public PlanetObject(String name, int intId, String img) {
+        super(name, intId, img);
     }
 
     public PlanetObject(
             String name,
-            int int_id,
+            int intId,
             String img,
             String mass,
             String radius,
@@ -27,7 +27,7 @@ public class PlanetObject extends SkyObject{
             String radiusSun,
             String info
             ) {
-        super(name, int_id, img);
+        super(name, intId, img);
         this.mass = mass;
         this.radius = radius;
         this.day = day;

@@ -44,7 +44,7 @@
     <style name="lable_encyc_main_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">#FFD261</item>
+        <item name="android:textColor">@color/labels_text_color</item>
         <item name="android:textSize">35dp</item>
     </style>
 
@@ -78,14 +78,21 @@
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:padding">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
         <!--<item name="android:layout_marginBottom">50dp</item>-->
+    </style>
+
+    <style name="linearlayout_for_btns_choice_style" parent="linearlayout_for_btns_gamemenu_style">
+        <item name="android:paddingBottom">0dp</item>
     </style>
 
     <style name="lable_name_gamemenu_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">#FFD261</item>
+        <item name="android:textColor">@color/labels_text_color</item>
         <item name="android:textSize">20dp</item>
     </style>
 

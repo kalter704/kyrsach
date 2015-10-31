@@ -4,16 +4,16 @@ public class ConstellationObject extends SkyObject {
     private String textWhereFrom;
     private String textInf;
 
-    public ConstellationObject(String name, int int_id) {
-        super(name, int_id);
+    public ConstellationObject(String name, int intId) {
+        super(name, intId);
     }
 
-    public ConstellationObject(String name, int int_id, String img) {
-        super(name, int_id, img);
+    public ConstellationObject(String name, int intId, String img) {
+        super(name, intId, img);
     }
 
-    public ConstellationObject(String name, int int_id, String img, String textWhereFrom, String textInf) {
-        super(name, int_id, img);
+    public ConstellationObject(String name, int intId, String img, String textWhereFrom, String textInf) {
+        super(name, intId, img);
         this.textWhereFrom = textWhereFrom;
         this.textInf = textInf;
     }
