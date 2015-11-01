@@ -15,7 +15,10 @@
 
     <style name="total_background">
         <item name="android:background">@color/color_background</item>
-        <!--<item name="android:background">@drawable/background_hello_activity</item>-->
+    </style>
+
+    <style name="total_background_img">
+        <item name="android:background">@drawable/background_main</item>
     </style>
 
     <style name="btns_main_style">
