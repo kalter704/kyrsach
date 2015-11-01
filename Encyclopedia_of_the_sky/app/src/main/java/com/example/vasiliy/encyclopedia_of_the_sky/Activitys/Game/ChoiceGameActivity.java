@@ -49,7 +49,8 @@ public class ChoiceGameActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(ChoiceGameActivity.this, GameActivity.class);
-        intent.putExtra("theme", v.getId());
+        intent.putExtra("theme", ((Button) v).getText());
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
     }
 }

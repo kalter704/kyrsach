@@ -1,19 +1,25 @@
 package com.example.vasiliy.encyclopedia_of_the_sky.Services;
 
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.service.notification.NotificationListenerService;
 import android.util.Log;
 
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.ConstellationObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.MyObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.PlanetObject;
+import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.QuestionObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.SkyObject;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class SkyDataBase {
 
@@ -25,10 +31,10 @@ public class SkyDataBase {
 
     public SkyDataBase(Context context) {
         this.context = context;
+        dbh = new DBHelper(context);
     }
 
     public void open() {
-        dbh = new DBHelper(context);
         db = dbh.getWritableDatabase();
     }
 
@@ -262,6 +268,123 @@ public class SkyDataBase {
         c.close();
         this.close();
         return list;
+    }
+
+    private List<QuestionObject> getQuestions(int amount, String table, String nameCol, String idCol, String imgCol){
+        this.open();
+        List<QuestionObject> questions = new ArrayList<>();
+
+        Cursor c;
+
+        String selectCount = "select count(*) from " + table + ";";
+
+        c = db.rawQuery(selectCount, new String[] {});
+
+        logCursor(c);
+
+        c.moveToFirst();
+
+        int count = c.getInt(c.getColumnIndex("count(*)"));
+
+        Log.d(LOG_TAG_DB, String.valueOf(count));
+
+        Random random = new Random();
+        Set<Integer> set = new TreeSet<>();
+
+        String query1 = "select "
+                + nameCol + ", "
+                + idCol + ", "
+                + imgCol
+                + " from " + table
+                + " limit ";
+        String query2 = ", 1;";
+
+        for(int i = 0; i <amount; ) {
+            int tempInt = random.nextInt(count);
+            if(!set.contains(tempInt)) {
+                set.add(tempInt);
+                c = db.rawQuery(query1 + String.valueOf(tempInt) + query2, new String[] {});
+                logCursor(c);
+                c.moveToFirst();
+                QuestionObject tempObj = new QuestionObject(
+                        c.getString(c.getColumnIndex(nameCol)),
+                        c.getInt(c.getColumnIndex(idCol)),
+                        c.getString(c.getColumnIndex(imgCol))
+                );
+                Set<String> setString = new TreeSet<>();
+                setString.add(tempObj.getName());
+                tempObj.addAnswer(tempObj.getName());
+                for(int j = 0; j < 3; ) {
+                    tempInt = random.nextInt(count);
+                    c = db.rawQuery(query1 + String.valueOf(tempInt) + query2, new String[] {});
+                    logCursor(c);
+                    c.moveToFirst();
+                    String answer = c.getString(c.getColumnIndex(nameCol));
+                    if(!setString.contains(answer)) {
+                        ++j;
+                        setString.add(answer);
+                        tempObj.addAnswer(answer);
+                    }
+                }
+                tempObj.mixAnswers();
+                questions.add(tempObj);
+                ++i;
+            }
+        }
+        c.close();
+        this.close();
+        return questions;
+    }
+
+    public List<QuestionObject> getQuestionsOfConstellation(int amount){
+        return getQuestions(amount, dbh.TABLE_NAME_CONSTELLATION, dbh.TITLE_COLUMN_TNC, dbh.INT_ID_COLUMN_TNC, dbh.IMG_COLUMN_TNC);
+    }
+
+    public void addScore(int _numOfRightAns, int _numOfQuestions){
+        this.open();
+        Cursor c;
+
+        c = db.query(dbh.TABLE_NAME_SCORE, null, null, null, null, null, null);
+
+        logCursor(c);
+
+        c.moveToFirst();
+
+        int numOfGames = c.getInt(c.getColumnIndex(dbh.NUM_OF_GAMES_COLUMN_TNS));
+        int numOfRightAns = c.getInt(c.getColumnIndex(dbh.RIGHT_ANS_COLUMN_TNS));
+        int numOfQuestions = c.getInt(c.getColumnIndex(dbh.NUM_OF_QUESTIONS_COLUMN_TNS));
+
+        ++numOfGames;
+        numOfRightAns += _numOfRightAns;
+        numOfQuestions += _numOfQuestions;
+
+        ContentValues cv = new ContentValues();
+        cv.put(dbh.NUM_OF_GAMES_COLUMN_TNS, numOfGames);
+        cv.put(dbh.RIGHT_ANS_COLUMN_TNS, numOfRightAns);
+        cv.put(dbh.NUM_OF_QUESTIONS_COLUMN_TNS, numOfQuestions);
+
+        db.update(dbh.TABLE_NAME_SCORE, cv, null, null);
+        c.close();
+        this.close();
+    }
+
+    public int[] getScore() {
+        this.open();
+        Cursor c;
+
+        c = db.query(dbh.TABLE_NAME_SCORE, null, null, null, null, null, null);
+
+        logCursor(c);
+
+        c.moveToFirst();
+
+        this.close();
+
+        return new int[] {
+                c.getInt(c.getColumnIndex(dbh.NUM_OF_GAMES_COLUMN_TNS)),
+                c.getInt(c.getColumnIndex(dbh.RIGHT_ANS_COLUMN_TNS)),
+                c.getInt(c.getColumnIndex(dbh.NUM_OF_QUESTIONS_COLUMN_TNS))
+        };
     }
 
     void logCursor(Cursor c) {

@@ -5,4 +5,6 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="image_view_for_tab_inf">100dp</dimen>
+
+    <dimen name="dimen_5dp">5dp</dimen>
 </resources>

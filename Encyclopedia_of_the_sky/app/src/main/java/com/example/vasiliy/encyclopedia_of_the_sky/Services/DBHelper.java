@@ -30,6 +30,24 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     //
+    // Таблица score
+    //
+    public static final String TABLE_NAME_SCORE = "score";
+    // TNS = TABLE_NAME_SCORE
+    public static final String NUM_OF_GAMES_COLUMN_TNS = "num_of_games";
+    public static final String RIGHT_ANS_COLUMN_TNS = "right_answers";
+    public static final String NUM_OF_QUESTIONS_COLUMN_TNS = "num_of_question";
+
+    private static final String CREATE_TABLE_SCORE = "create table " + TABLE_NAME_SCORE +" ("
+            + "id integer primary key autoincrement,"
+            + NUM_OF_GAMES_COLUMN_TNS + " integer" + ','
+            + RIGHT_ANS_COLUMN_TNS + " integer" + ','
+            + NUM_OF_QUESTIONS_COLUMN_TNS + " integer"
+            + ");";
+
+
+
+    //
     // Таблица sky_objects
     //
     public static final String TABLE_NAME_SKY_OBJECTS = "sky_objects";
@@ -98,7 +116,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public DBHelper(Context context) {
-        // конструктор суперкласса
         super(context, DB_NAME, null, VERSION);
         datasForDB = new DatasForDB();
     }
@@ -110,6 +127,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreateTableConstelltions(db);
         onCreateTablePlanets(db);
         onCreateTableThemes(db);
+        onCreateTableScore(db);
     }
 
     @Override
@@ -120,15 +138,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpdata(SQLiteDatabase db) {
         db.beginTransaction();
         try {
-            db.execSQL("drop table " + TABLE_NAME_CONSTELLATION + ";");
-            db.execSQL("drop table " + TABLE_NAME_SKY_OBJECTS + ";");
-            db.execSQL("drop table " + TABLE_NAME_PLANET + ";");
-            db.execSQL("drop table " + TABLE_NAME_THEMES + ";");
-            /*
-            onCreateTableConstelltions(db);
-            onCreateTableSkyObjects(db);
-            onCreateTablePlanets(db);
-            */
+            db.execSQL("drop table if exists " + TABLE_NAME_CONSTELLATION + ";");
+            db.execSQL("drop table if exists " + TABLE_NAME_SKY_OBJECTS + ";");
+            db.execSQL("drop table if exists " + TABLE_NAME_PLANET + ";");
+            db.execSQL("drop table if exists " + TABLE_NAME_THEMES + ";");
+            db.execSQL("drop table if exists " + TABLE_NAME_SCORE + ";");
             onCreate(db);
             db.setTransactionSuccessful();
         } finally {
@@ -154,6 +168,23 @@ public class DBHelper extends SQLiteOpenHelper {
             db.insert(TABLE_NAME_THEMES, null, cv);
         }
     }
+
+    //
+    // Создание таблицы статистики
+    //
+    private void onCreateTableScore(SQLiteDatabase db) {
+        db.execSQL(CREATE_TABLE_SCORE);
+
+        ContentValues cv = new ContentValues();
+
+        cv.clear();
+        cv.put(NUM_OF_GAMES_COLUMN_TNS, 0);
+        cv.put(RIGHT_ANS_COLUMN_TNS, 0);
+        cv.put(NUM_OF_QUESTIONS_COLUMN_TNS, 0);
+        db.insert(TABLE_NAME_SCORE, null, cv);
+
+    }
+
 
     //
     // Создание и заполнение sky_objects
@@ -186,7 +217,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String[] constellationTitle = datasForDB.constellationName;
         int[] constellationId = datasForDB.constelletionId;
         String[] constellationImg = datasForDB.constellationImg;
-        String[] constallationTextWhereFrom = datasForDB.constellationWhereFrom;
+        String[] constellationTextWhereFrom = datasForDB.constellationWhereFrom;
         String[] constellationTextInf = datasForDB.constellationTextInf;
 
         for(int i = 0; i < constellationTitle.length; ++i) {
@@ -194,7 +225,7 @@ public class DBHelper extends SQLiteOpenHelper {
             cv.put(TITLE_COLUMN_TNC, constellationTitle[i]);
             cv.put(INT_ID_COLUMN_TNC, constellationId[i]);
             cv.put(IMG_COLUMN_TNC, constellationImg[i]);
-            cv.put(TEXT_WHERE_FROM_COLUMN_TNC, constallationTextWhereFrom[i]);
+            cv.put(TEXT_WHERE_FROM_COLUMN_TNC, constellationTextWhereFrom[i]);
             cv.put(TEXT_INF_COLUMN_TNC, constellationTextInf[i]);
             db.insert(TABLE_NAME_CONSTELLATION, null, cv);
         }

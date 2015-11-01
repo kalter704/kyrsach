@@ -45,7 +45,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/labels_text_color</item>
-        <item name="android:textSize">35dp</item>
+        <item name="android:textSize">35sp</item>
     </style>
 
     <style name="linearlayout_for_btns_main_style">
@@ -65,7 +65,7 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginBottom">10dp</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="line_view_in_tabs_style">
@@ -93,11 +93,11 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/labels_text_color</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="text_view_in_planet_view_style">
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="labels_in_planet_view_style" parent="text_view_in_planet_view_style">
@@ -106,6 +106,34 @@
 
     <style name="row_in_palnet_view_style">
         <item name="android:layout_marginBottom">5dp</item>
+    </style>
+
+    <style name="btn_game_style">
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:singleLine">false</item>
+    </style>
+
+    <style name="textview_in_game_style">
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="text_in_game_act_style">
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="text_in_statist_act_style">
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:layout_marginBottom">15dp</item>
     </style>
 
 </resources>
