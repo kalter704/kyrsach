@@ -1,78 +1,109 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/total_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    style="@style/total_background"
     tools:context="com.example.vasiliy.encyclopedia_of_the_sky.Activitys.Game.StatisticsActivity">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Всего игр: "
                 android:id="@+id/textView13"
-                style="@style/text_in_statist_act_style"/>
-
-            <TextView
+                style="@style/text_in_statist_act_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N"
+                android:text="Всего игр: " />
+
+            <TextView
                 android:id="@+id/tvNumOfGames"
-                style="@style/text_in_statist_act_style"/>
+                style="@style/text_in_statist_act_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="N" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Правильных ответов: "
                 android:id="@+id/textView15"
-                style="@style/text_in_statist_act_style"/>
-
-            <TextView
+                style="@style/text_in_statist_act_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N"
+                android:text="Правильных ответов: " />
+
+            <TextView
                 android:id="@+id/tvRightAns"
-                style="@style/text_in_statist_act_style"/>
+                style="@style/text_in_statist_act_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="N" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Всего вопросов: "
                 android:id="@+id/textView17"
-                style="@style/text_in_statist_act_style"/>
-
-            <TextView
+                style="@style/text_in_statist_act_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N"
+                android:text="Всего вопросов: " />
+
+            <TextView
                 android:id="@+id/tvNumOfQues"
-                style="@style/text_in_statist_act_style"/>
+                style="@style/text_in_statist_act_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="N" />
 
         </LinearLayout>
     </LinearLayout>
-</RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnDelStat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_view_object"
+            android:text="@string/delete_statistic"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_view_object"
+            android:text="@string/back_page"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+</LinearLayout>

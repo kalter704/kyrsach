@@ -391,6 +391,22 @@ public class SkyDataBase {
         };
     }
 
+    public void deleteStatistic() {
+        this.open();
+        ContentValues cv = new ContentValues();
+
+        cv.put(dbh.NUM_OF_GAMES_COLUMN_TNS, 0);
+        cv.put(dbh.RIGHT_ANS_COLUMN_TNS, 0);
+        cv.put(dbh.NUM_OF_QUESTIONS_COLUMN_TNS, 0);
+
+        db.update(dbh.TABLE_NAME_SCORE, cv, null, null);
+        this.close();
+    }
+
+    public void getViewObjectByName() {
+
+    }
+
     void logCursor(Cursor c) {
         if (c != null) {
             if (c.moveToFirst()) {

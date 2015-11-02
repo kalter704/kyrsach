@@ -25,6 +25,7 @@
     <string name="next_page">Следующий --&gt;</string>
     <string name="prev_page">&lt;-- Предыдущий</string>
     <string name="back_page">Назад</string>
+    <string name="delete_statistic">Удалить статистику</string>
 
     <string name="title_activity_game">GameActivity</string>
     <string name="title_activity_login">LoginActivity</string>
