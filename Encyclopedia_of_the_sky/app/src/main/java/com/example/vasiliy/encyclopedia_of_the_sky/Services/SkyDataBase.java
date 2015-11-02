@@ -13,6 +13,7 @@ import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.MyOb
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.PlanetObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.QuestionObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.SkyObject;
+import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.ViewObject;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -403,8 +404,32 @@ public class SkyDataBase {
         this.close();
     }
 
-    public void getViewObjectByName() {
+    public ViewObject getViewObjectByName(String name) {
+        this.open();
+        Cursor c;
 
+        String[] columns = {
+                dbh.TITLE_COLUMN_TNVO,
+                dbh.TEXT_COLUMN_TNVO
+        };
+
+        String selection = dbh.TITLE_COLUMN_TNVO + " = ?";
+
+        String[] selectionArgs = { name };
+
+        c = db.query(dbh.TABLE_NAME_VIEW_OBJ, columns, selection, selectionArgs, null, null, null);
+
+        logCursor(c);
+
+        c.moveToFirst();
+
+        ViewObject viewObject = new ViewObject(
+                c.getString(c.getColumnIndex(dbh.TITLE_COLUMN_TNVO)),
+                c.getString(c.getColumnIndex(dbh.TEXT_COLUMN_TNVO))
+        );
+
+        this.close();
+        return viewObject;
     }
 
     void logCursor(Cursor c) {

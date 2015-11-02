@@ -23,10 +23,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String INT_ID_COLUMN_TNT = "int_id";
 
     private static final String CREATE_TABLE_THEMES = "create table " + TABLE_NAME_THEMES + " ("
-            + "id integer primary key autoincrement,"
-            + TITLE_COLUMN_TNT + " text" + ','
-            + INT_ID_COLUMN_TNT + " integer"
-            + ");";
+                                                    + "id integer primary key autoincrement,"
+                                                    + TITLE_COLUMN_TNT + " text" + ','
+                                                    + INT_ID_COLUMN_TNT + " integer"
+                                                    + ");";
 
 
     //
@@ -39,11 +39,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String NUM_OF_QUESTIONS_COLUMN_TNS = "num_of_question";
 
     private static final String CREATE_TABLE_SCORE = "create table " + TABLE_NAME_SCORE +" ("
-            + "id integer primary key autoincrement,"
-            + NUM_OF_GAMES_COLUMN_TNS + " integer" + ','
-            + RIGHT_ANS_COLUMN_TNS + " integer" + ','
-            + NUM_OF_QUESTIONS_COLUMN_TNS + " integer"
-            + ");";
+                                                    + "id integer primary key autoincrement,"
+                                                    + NUM_OF_GAMES_COLUMN_TNS + " integer" + ','
+                                                    + RIGHT_ANS_COLUMN_TNS + " integer" + ','
+                                                    + NUM_OF_QUESTIONS_COLUMN_TNS + " integer"
+                                                    + ");";
 
 
 
@@ -114,6 +114,20 @@ public class DBHelper extends SQLiteOpenHelper {
                                                     + INFO_COLUMN_TNP + " text"
                                                     + ");";
 
+    //
+    // VIEW_OBJECT
+    //
+    public static final String TABLE_NAME_VIEW_OBJ = "view_obj";
+    // TNVO = TABLE_NAME_VIEW_OBJ
+    public static final String TITLE_COLUMN_TNVO = "title";
+    public static final String TEXT_COLUMN_TNVO = "text";
+
+    private static final String CREATE_TABLE_VIEW_OBJECT = "create table " + TABLE_NAME_VIEW_OBJ + " ("
+                                                        + "id integer primary key autoincrement,"
+                                                        + TITLE_COLUMN_TNVO + " text" + ','
+                                                        + TEXT_COLUMN_TNVO + " text"
+                                                        + ");";
+
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, VERSION);
@@ -128,6 +142,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreateTablePlanets(db);
         onCreateTableThemes(db);
         onCreateTableScore(db);
+        onCreateViewObject(db);
     }
 
     @Override
@@ -143,6 +158,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("drop table if exists " + TABLE_NAME_PLANET + ";");
             db.execSQL("drop table if exists " + TABLE_NAME_THEMES + ";");
             db.execSQL("drop table if exists " + TABLE_NAME_SCORE + ";");
+            db.execSQL("drop table if exists " + TABLE_NAME_VIEW_OBJ + ";");
             onCreate(db);
             db.setTransactionSuccessful();
         } finally {
@@ -262,5 +278,25 @@ public class DBHelper extends SQLiteOpenHelper {
             db.insert(TABLE_NAME_PLANET, null, cv);
         }
     }
+
+
+    //
+    // VIEW_OBJECT
+    //
+    private void onCreateViewObject(SQLiteDatabase db) {
+        db.execSQL(CREATE_TABLE_VIEW_OBJECT);
+
+        ContentValues cv = new ContentValues();
+
+        String[] elemSky = datasForDB.elemSky;
+        String[] elemText = datasForDB.elemText;
+        for(int i = 0; i < elemSky.length; ++i) {
+            cv.clear();
+            cv.put(TITLE_COLUMN_TNVO, elemSky[i]);
+            cv.put(TEXT_COLUMN_TNVO, elemText[i]);
+            db.insert(TABLE_NAME_VIEW_OBJ, null, cv);
+        }
+    }
+
 
 }
