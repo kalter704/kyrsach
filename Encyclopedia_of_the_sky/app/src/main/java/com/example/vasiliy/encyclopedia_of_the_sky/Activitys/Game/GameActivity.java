@@ -30,7 +30,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     SkyDataBase dataBase;
 
-    final int numberOfQues = 5;
+    final int numberOfQues = 10;
     int questionNum;
 
     List<QuestionObject> questions;
@@ -43,8 +43,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_game);
 
         theme = getIntent().getStringExtra("theme");
-
-
 
         dataBase = new SkyDataBase(this);
 
@@ -70,6 +68,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         if("Созвездия".equals(theme)) {
             questions = dataBase.getQuestionsOfConstellation(numberOfQues);
+        }
+        if("Планеты".equals(theme)) {
+            questions = dataBase.getQuestionOfPlanet(numberOfQues);
         }
 
         questionNum = 0;

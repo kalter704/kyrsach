@@ -340,6 +340,10 @@ public class SkyDataBase {
         return getQuestions(amount, dbh.TABLE_NAME_CONSTELLATION, dbh.TITLE_COLUMN_TNC, dbh.INT_ID_COLUMN_TNC, dbh.IMG_COLUMN_TNC);
     }
 
+    public List<QuestionObject> getQuestionOfPlanet(int amount) {
+        return getQuestions(amount, dbh.TABLE_NAME_PLANET, dbh.TITLE_COLUMN_TNP, dbh.INT_ID_COLUMN_TNP, dbh.IMG_COLUMN_TNP);
+    }
+
     public void addScore(int _numOfRightAns, int _numOfQuestions){
         this.open();
         Cursor c;
