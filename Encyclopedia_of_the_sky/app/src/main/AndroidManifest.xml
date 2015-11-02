@@ -47,7 +47,14 @@
         <activity
             android:name=".Activitys.Game.ChoiceGameActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activitys.Encyclopedia.ViewActivity" >
+        <activity
+            android:name=".Activitys.Encyclopedia.ViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activitys.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activitys.HelpActivity"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

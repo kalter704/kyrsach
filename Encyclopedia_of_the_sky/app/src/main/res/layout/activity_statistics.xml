@@ -94,7 +94,7 @@
             android:layout_weight="1"
             android:background="@drawable/btn_bg_view_object"
             android:text="@string/delete_statistic"
-            android:textSize="17sp" />
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/btnBack"
@@ -103,7 +103,7 @@
             android:layout_weight="1"
             android:background="@drawable/btn_bg_view_object"
             android:text="@string/back_page"
-            android:textSize="17sp" />
+            android:textSize="15sp" />
 
     </LinearLayout>
 </LinearLayout>

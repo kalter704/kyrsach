@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Button btnToEncyc;
     Button btnToGameMenu;
+    Button btnSettings;
+    Button btnHelp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnToGameMenu = (Button) findViewById(R.id.game_btn_main);
         btnToGameMenu.setOnClickListener(this);
 
+        btnSettings = (Button) findViewById(R.id.settings_btn_main);
+        btnSettings.setOnClickListener(this);
+
+        btnHelp = (Button) findViewById(R.id.help_btn_main);
+        btnHelp.setOnClickListener(this);
     }
 
     @Override
@@ -39,12 +46,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.game_btn_main:
                 intent = new Intent(MainActivity.this, GameMenuActivity.class);
                 break;
+            case R.id.settings_btn_main:
+                intent = new Intent(MainActivity.this, SettingsActivity.class);
+                break;
+            case R.id.help_btn_main:
+                intent = new Intent(MainActivity.this, HelpActivity.class);
+                break;
         }
         startActivity(intent);
     }
 
-    public void onClickForUpdata(View v) {
-        SkyDataBase skyDataBase = new SkyDataBase(this);
-        skyDataBase.onUpdataDB();
-    }
+
 }
