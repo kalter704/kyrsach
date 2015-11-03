@@ -48,14 +48,25 @@ public class ChoiceGameActivity extends AppCompatActivity implements View.OnClic
             linLayout.addView(item);
         }
 
+        View item = ltInflater.inflate(R.layout.button_back_item, linLayout, false);
+        Button btnBack = (Button) item.findViewById(R.id.btnBack);
+        btnBack.setText("Назад");
 
+        item.setId(Integer.valueOf(10));
+        item.setOnClickListener(this);
+
+        linLayout.addView(item);
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(ChoiceGameActivity.this, GameActivity.class);
-        intent.putExtra("theme", ((Button) v).getText());
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        startActivity(intent);
+        if(v.getId() != Integer.valueOf(10)) {
+            Intent intent = new Intent(ChoiceGameActivity.this, GameActivity.class);
+            intent.putExtra("theme", ((Button) v).getText());
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            startActivity(intent);
+        } else {
+            finish();
+        }
     }
 }

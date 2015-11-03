@@ -41,9 +41,16 @@
 
         <Button
             android:id="@+id/statistica_btn"
-            style="@style/help_btn_main_style"
+            style="@style/encyc_btn_main_style"
             android:background="@drawable/btn_bg_main"
             android:text="@string/statistica_gamemenu" />
+
+        <Button
+            android:id="@+id/back_btn"
+            style="@style/help_btn_main_style"
+            android:background="@drawable/btn_bg_main"
+            android:layout_marginTop="20dp"
+            android:text="Назад" />
 
     </LinearLayout>
 

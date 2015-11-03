@@ -12,6 +12,7 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
 
     Button newGame;
     Button statistika;
+    Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,9 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
 
         statistika = (Button) findViewById(R.id.statistica_btn);
         statistika.setOnClickListener(this);
+
+        back = (Button) findViewById(R.id.back_btn);
+        back.setOnClickListener(this);
     }
 
     @Override
@@ -36,6 +40,10 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
                 intent = new Intent(GameMenuActivity.this, StatisticsActivity.class);
                 break;
         }
-        startActivity(intent);
+        if(R.id.back_btn != v.getId()) {
+            startActivity(intent);
+        } else {
+            finish();
+        }
     }
 }
