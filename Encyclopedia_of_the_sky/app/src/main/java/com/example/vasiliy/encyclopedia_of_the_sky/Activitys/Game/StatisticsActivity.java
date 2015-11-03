@@ -22,6 +22,7 @@ public class StatisticsActivity extends AppCompatActivity implements View.OnClic
     TextView tvNumOfGame;
     TextView tvRightAns;
     TextView tvNumOfQues;
+    TextView tvProcRight;
 
     SkyDataBase dataBase;
 
@@ -42,6 +43,7 @@ public class StatisticsActivity extends AppCompatActivity implements View.OnClic
         tvNumOfGame = (TextView) findViewById(R.id.tvNumOfGames);
         tvRightAns = (TextView) findViewById(R.id.tvRightAns);
         tvNumOfQues = (TextView) findViewById(R.id.tvNumOfQues);
+        tvProcRight = (TextView) findViewById(R.id.tvProcRigth);
 
         dataBase = new SkyDataBase(this);
 
@@ -50,8 +52,11 @@ public class StatisticsActivity extends AppCompatActivity implements View.OnClic
         tvNumOfGame.setText(String.valueOf(score[0]));
         tvRightAns.setText(String.valueOf(score[1]));
         tvNumOfQues.setText(String.valueOf(score[2]));
-
-
+        if(score[0] != 0) {
+            tvProcRight.setText(Integer.toString((int)(score[1] * 1.0 / score[2] * 100)) + "%");
+        } else {
+            tvProcRight.setText("0%");
+        }
     }
 
     @Override
@@ -90,6 +95,7 @@ public class StatisticsActivity extends AppCompatActivity implements View.OnClic
                     tvNumOfGame.setText(String.valueOf(0));
                     tvRightAns.setText(String.valueOf(0));
                     tvNumOfQues.setText(String.valueOf(0));
+                    tvProcRight.setText("0%");
                     break;
             }
         }
