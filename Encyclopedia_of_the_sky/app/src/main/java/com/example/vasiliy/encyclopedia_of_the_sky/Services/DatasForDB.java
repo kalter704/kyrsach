@@ -15,7 +15,7 @@ public class DatasForDB {
     //
     public String[] skyObjects = {"Созвездия", "Планеты", "Звезды", "Звездные скопления", "Туманности", "Черные дыры", "Галактики", "Астероиды и кометы", "Темная материя"};
     public int[] skyObjectsId = {    101,        102,       103,           104,               105,           106,          107,              108,              109};
-    public String[] skyObjetcsImg = {"constellation_main", "main_list_planet", "main_list_star", "main_build_black_36dp", "main_list_planet", "main_build_black_36dp", "main_list_planet", "main_list_star", "main_build_black_36dp"};
+    public String[] skyObjetcsImg = {"main_list_constellation", "main_list_planet", "main_list_star", "main_list_many_stars", "main_list_nebula", "main_list_black_hole", "main_list_galaxy", "main_list_kometa", "main_list_dark_matter"};
 
 
     //
