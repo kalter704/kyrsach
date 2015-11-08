@@ -3,16 +3,14 @@ package com.example.vasiliy.encyclopedia_of_the_sky.Activitys.Game;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.vasiliy.encyclopedia_of_the_sky.R;
-import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.SkyObject;
+import com.example.vasiliy.encyclopedia_of_the_sky.Services.Score;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBase;
 
 public class StatisticsActivity extends AppCompatActivity implements View.OnClickListener{
@@ -47,13 +45,13 @@ public class StatisticsActivity extends AppCompatActivity implements View.OnClic
 
         dataBase = new SkyDataBase(this);
 
-        int[] score = dataBase.getScore();
+        Score score = new Score(this);
 
-        tvNumOfGame.setText(String.valueOf(score[0]));
-        tvRightAns.setText(String.valueOf(score[1]));
-        tvNumOfQues.setText(String.valueOf(score[2]));
-        if(score[0] != 0) {
-            tvProcRight.setText(Integer.toString((int)(score[1] * 1.0 / score[2] * 100)) + "%");
+        tvNumOfGame.setText(String.valueOf(score.getNumOfGames()));
+        tvRightAns.setText(String.valueOf(score.getRightAnswers()));
+        tvNumOfQues.setText(String.valueOf(score.getNumOfQuestion()));
+        if(score.getNumOfGames() != 0) {
+            tvProcRight.setText(Integer.toString((int)(score.getRightAnswers() * 1.0 / score.getNumOfQuestion() * 100)) + "%");
         } else {
             tvProcRight.setText("0%");
         }
@@ -91,11 +89,14 @@ public class StatisticsActivity extends AppCompatActivity implements View.OnClic
         public void onClick(DialogInterface dialog, int which) {
             switch (which) {
                 case Dialog.BUTTON_POSITIVE:
-                    dataBase.deleteStatistic();
+                    //dataBase.deleteStatistic();
+                    Score score = new Score(StatisticsActivity.this);
+                    score.delete();
                     tvNumOfGame.setText(String.valueOf(0));
                     tvRightAns.setText(String.valueOf(0));
                     tvNumOfQues.setText(String.valueOf(0));
                     tvProcRight.setText("0%");
+                    score.save();
                     break;
             }
         }

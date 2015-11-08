@@ -89,29 +89,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         String ans3 = questions.get(questionNum).getAnswer(2);
         String ans4 = questions.get(questionNum).getAnswer(3);
 
-        String[] spAnt = ans1.split(" ");
-        ans1 = spAnt[0];
-        for(int i = 1; i < spAnt.length; ++i){
-            ans1 += "\n" + spAnt[i];
-        }
-
-        spAnt = ans2.split(" ");
-        ans2 = spAnt[0];
-        for(int i = 1; i < spAnt.length; ++i){
-            ans2 += "\n" + spAnt[i];
-        }
-
-        spAnt = ans3.split(" ");
-        ans3 = spAnt[0];
-        for(int i = 1; i < spAnt.length; ++i){
-            ans3 += "\n" + spAnt[i];
-        }
-
-        spAnt = ans4.split(" ");
-        ans4 = spAnt[0];
-        for(int i = 1; i < spAnt.length; ++i){
-            ans4 += "\n" + spAnt[i];
-        }
+        ans1 = ans1.replaceAll(" ", "\n");
+        ans2 = ans2.replaceAll(" ", "\n");
+        ans3 = ans3.replaceAll(" ", "\n");
+        ans4 = ans4.replaceAll(" ", "\n");
 
         Log.d("TEXT", "ans1 = " + ans1);
         Log.d("TEXT", "ans2 = " + ans2);

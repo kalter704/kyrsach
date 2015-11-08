@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.vasiliy.encyclopedia_of_the_sky.R;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.QuestionObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.SkyObject;
+import com.example.vasiliy.encyclopedia_of_the_sky.Services.Score;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBase;
 
 import java.util.ArrayList;
@@ -34,11 +35,6 @@ public class GameOverActivity extends AppCompatActivity implements View.OnClickL
         btnBAck.setOnClickListener(this);
 
         List<QuestionObject> questions = getIntent().getParcelableArrayListExtra("Questions");
-        /*
-        for(int i = 0; i < ques.size(); ++i) {
-            ques.get(i).writeToLog();
-        }
-        */
 
         int numOfRightAns = 0;
         int numOfQuestions = questions.size();
@@ -72,8 +68,9 @@ public class GameOverActivity extends AppCompatActivity implements View.OnClickL
             linLayout.addView(item);
         }
 
-        SkyDataBase dataBase = new SkyDataBase(this);
-        dataBase.addScore(numOfRightAns, numOfQuestions);
+        Score score = new Score(this);
+        score.add(numOfRightAns, numOfQuestions);
+        score.save();
 
     }
 

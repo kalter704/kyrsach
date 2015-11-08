@@ -1,11 +1,9 @@
 package com.example.vasiliy.encyclopedia_of_the_sky.Services;
 
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.service.notification.NotificationListenerService;
 import android.util.Log;
 
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.ConstellationObject;
@@ -16,7 +14,6 @@ import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.SkyO
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.ViewObject;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -40,9 +37,9 @@ public class SkyDataBase {
     }
 
     public void close() {
-        if(dbh != null) {
-            dbh.close();
-        }
+        //if(dbh != null) {
+        dbh.close();
+        //}
     }
 
     public void onUpdataDB() {
@@ -343,65 +340,6 @@ public class SkyDataBase {
 
     public List<QuestionObject> getQuestionOfPlanet(int amount) {
         return getQuestions(amount, dbh.TABLE_NAME_PLANET, dbh.TITLE_COLUMN_TNP, dbh.INT_ID_COLUMN_TNP, dbh.IMG_COLUMN_TNP);
-    }
-
-    public void addScore(int _numOfRightAns, int _numOfQuestions){
-        this.open();
-        Cursor c;
-
-        c = db.query(dbh.TABLE_NAME_SCORE, null, null, null, null, null, null);
-
-        logCursor(c);
-
-        c.moveToFirst();
-
-        int numOfGames = c.getInt(c.getColumnIndex(dbh.NUM_OF_GAMES_COLUMN_TNS));
-        int numOfRightAns = c.getInt(c.getColumnIndex(dbh.RIGHT_ANS_COLUMN_TNS));
-        int numOfQuestions = c.getInt(c.getColumnIndex(dbh.NUM_OF_QUESTIONS_COLUMN_TNS));
-
-        ++numOfGames;
-        numOfRightAns += _numOfRightAns;
-        numOfQuestions += _numOfQuestions;
-
-        ContentValues cv = new ContentValues();
-        cv.put(dbh.NUM_OF_GAMES_COLUMN_TNS, numOfGames);
-        cv.put(dbh.RIGHT_ANS_COLUMN_TNS, numOfRightAns);
-        cv.put(dbh.NUM_OF_QUESTIONS_COLUMN_TNS, numOfQuestions);
-
-        db.update(dbh.TABLE_NAME_SCORE, cv, null, null);
-        c.close();
-        this.close();
-    }
-
-    public int[] getScore() {
-        this.open();
-        Cursor c;
-
-        c = db.query(dbh.TABLE_NAME_SCORE, null, null, null, null, null, null);
-
-        logCursor(c);
-
-        c.moveToFirst();
-
-        this.close();
-
-        return new int[] {
-                c.getInt(c.getColumnIndex(dbh.NUM_OF_GAMES_COLUMN_TNS)),
-                c.getInt(c.getColumnIndex(dbh.RIGHT_ANS_COLUMN_TNS)),
-                c.getInt(c.getColumnIndex(dbh.NUM_OF_QUESTIONS_COLUMN_TNS))
-        };
-    }
-
-    public void deleteStatistic() {
-        this.open();
-        ContentValues cv = new ContentValues();
-
-        cv.put(dbh.NUM_OF_GAMES_COLUMN_TNS, 0);
-        cv.put(dbh.RIGHT_ANS_COLUMN_TNS, 0);
-        cv.put(dbh.NUM_OF_QUESTIONS_COLUMN_TNS, 0);
-
-        db.update(dbh.TABLE_NAME_SCORE, cv, null, null);
-        this.close();
     }
 
     public ViewObject getViewObjectByName(String name) {

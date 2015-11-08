@@ -28,25 +28,6 @@ public class DBHelper extends SQLiteOpenHelper {
                                                     + INT_ID_COLUMN_TNT + " integer"
                                                     + ");";
 
-
-    //
-    // Таблица score
-    //
-    public static final String TABLE_NAME_SCORE = "score";
-    // TNS = TABLE_NAME_SCORE
-    public static final String NUM_OF_GAMES_COLUMN_TNS = "num_of_games";
-    public static final String RIGHT_ANS_COLUMN_TNS = "right_answers";
-    public static final String NUM_OF_QUESTIONS_COLUMN_TNS = "num_of_question";
-
-    private static final String CREATE_TABLE_SCORE = "create table " + TABLE_NAME_SCORE +" ("
-                                                    + "id integer primary key autoincrement,"
-                                                    + NUM_OF_GAMES_COLUMN_TNS + " integer" + ','
-                                                    + RIGHT_ANS_COLUMN_TNS + " integer" + ','
-                                                    + NUM_OF_QUESTIONS_COLUMN_TNS + " integer"
-                                                    + ");";
-
-
-
     //
     // Таблица sky_objects
     //
@@ -141,7 +122,6 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreateTableConstelltions(db);
         onCreateTablePlanets(db);
         onCreateTableThemes(db);
-        onCreateTableScore(db);
         onCreateViewObject(db);
     }
 
@@ -157,7 +137,6 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("drop table if exists " + TABLE_NAME_SKY_OBJECTS + ";");
             db.execSQL("drop table if exists " + TABLE_NAME_PLANET + ";");
             db.execSQL("drop table if exists " + TABLE_NAME_THEMES + ";");
-            db.execSQL("drop table if exists " + TABLE_NAME_SCORE + ";");
             db.execSQL("drop table if exists " + TABLE_NAME_VIEW_OBJ + ";");
             onCreate(db);
             db.setTransactionSuccessful();
@@ -183,22 +162,6 @@ public class DBHelper extends SQLiteOpenHelper {
             cv.put(INT_ID_COLUMN_TNT, intId[i]);
             db.insert(TABLE_NAME_THEMES, null, cv);
         }
-    }
-
-    //
-    // Создание таблицы статистики
-    //
-    private void onCreateTableScore(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_SCORE);
-
-        ContentValues cv = new ContentValues();
-
-        cv.clear();
-        cv.put(NUM_OF_GAMES_COLUMN_TNS, 0);
-        cv.put(RIGHT_ANS_COLUMN_TNS, 0);
-        cv.put(NUM_OF_QUESTIONS_COLUMN_TNS, 0);
-        db.insert(TABLE_NAME_SCORE, null, cv);
-
     }
 
 
