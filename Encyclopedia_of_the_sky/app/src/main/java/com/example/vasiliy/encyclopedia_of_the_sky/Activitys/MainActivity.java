@@ -9,7 +9,6 @@ import android.widget.Button;
 import com.example.vasiliy.encyclopedia_of_the_sky.Activitys.Encyclopedia.EncyclopediaActivity;
 import com.example.vasiliy.encyclopedia_of_the_sky.Activitys.Game.GameMenuActivity;
 import com.example.vasiliy.encyclopedia_of_the_sky.R;
-import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBase;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

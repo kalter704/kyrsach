@@ -5,16 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.vasiliy.encyclopedia_of_the_sky.R;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.MyObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBase;
+import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBaseImpl;
 
 import java.util.List;
 
@@ -27,7 +24,7 @@ public class ChoiceGameActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choice_game);
 
-        dataBase = new SkyDataBase(this);
+        dataBase = new SkyDataBaseImpl(this);
 
         List<MyObject> listThemes = dataBase.getThemes();
 

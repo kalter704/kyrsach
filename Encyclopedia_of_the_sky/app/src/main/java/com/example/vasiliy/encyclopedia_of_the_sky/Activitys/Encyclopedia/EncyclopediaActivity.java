@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.vasiliy.encyclopedia_of_the_sky.R;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.SkyObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBase;
+import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBaseImpl;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class EncyclopediaActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_1);
 
-        dataBase = new SkyDataBase(this);
+        dataBase = new SkyDataBaseImpl(this);
 
         List<SkyObject> listSkyObjects = dataBase.getListSkyObjects();
 

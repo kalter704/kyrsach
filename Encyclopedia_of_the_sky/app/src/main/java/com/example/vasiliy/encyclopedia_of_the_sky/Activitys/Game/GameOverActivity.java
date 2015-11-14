@@ -1,10 +1,8 @@
 package com.example.vasiliy.encyclopedia_of_the_sky.Activitys.Game;
 
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +13,15 @@ import android.widget.TextView;
 
 import com.example.vasiliy.encyclopedia_of_the_sky.R;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.QuestionObject;
-import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.SkyObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.Score;
-import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBase;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameOverActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnBAck;
+
+    List<QuestionObject> questions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +31,7 @@ public class GameOverActivity extends AppCompatActivity implements View.OnClickL
         btnBAck = (Button) findViewById(R.id.btnBack);
         btnBAck.setOnClickListener(this);
 
-        List<QuestionObject> questions = getIntent().getParcelableArrayListExtra("Questions");
+        questions = getIntent().getParcelableArrayListExtra("Questions");
 
         int numOfRightAns = 0;
         int numOfQuestions = questions.size();
@@ -65,6 +62,8 @@ public class GameOverActivity extends AppCompatActivity implements View.OnClickL
             imgView.setImageDrawable(getResources().getDrawable(imageId));
 
             item.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
+            item.setOnClickListener(this);
+            item.setId(i);
             linLayout.addView(item);
         }
 
@@ -76,6 +75,12 @@ public class GameOverActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        finish();
+        if(v.getId() != R.id.btnBack) {
+            //Intent intent = new Intent(GameOverActivity.this, GameOverShowQuestionActivity.class);
+            //intent.putExtra("Question", questions.get(v.getId()));
+            //startActivity(intent);
+        } else {
+            finish();
+        }
     }
 }

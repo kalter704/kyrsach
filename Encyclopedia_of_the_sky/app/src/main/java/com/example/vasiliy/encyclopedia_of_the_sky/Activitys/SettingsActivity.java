@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import com.example.vasiliy.encyclopedia_of_the_sky.R;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBase;
+import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBaseImpl;
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -29,7 +30,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.updata_db:
-                SkyDataBase skyDataBase = new SkyDataBase(this);
+                SkyDataBase skyDataBase = new SkyDataBaseImpl(this);
                 skyDataBase.onUpdataDB();
                 break;
             case R.id.btnBack:

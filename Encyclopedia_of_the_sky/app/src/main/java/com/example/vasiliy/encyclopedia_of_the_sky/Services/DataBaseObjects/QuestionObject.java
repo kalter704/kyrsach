@@ -19,12 +19,14 @@ public class QuestionObject extends SkyObject implements Parcelable {
         super(name, intId);
         countAns = 0;
         this.answers = new ArrayList<>();
+        rightAnswer = false;
     }
 
     public QuestionObject(String name, int intId, String img) {
         super(name, intId, img);
         countAns = 0;
         this.answers = new ArrayList<>();
+        rightAnswer = false;
     }
 
     public QuestionObject(String name, int intId, String img, List<String> answers) {
@@ -32,6 +34,7 @@ public class QuestionObject extends SkyObject implements Parcelable {
         this.answers = new ArrayList<>();
         this.answers = answers;
         countAns = answers.size();
+        rightAnswer = false;
     }
 
     public boolean isRightAnswer() {

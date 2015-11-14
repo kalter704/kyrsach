@@ -5,16 +5,14 @@ import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.vasiliy.encyclopedia_of_the_sky.R;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.QuestionObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBase;
+import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBaseImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +42,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         theme = getIntent().getStringExtra("theme");
 
-        dataBase = new SkyDataBase(this);
+        dataBase = new SkyDataBaseImpl(this);
 
         btnOne = (TextView) findViewById(R.id.btnOne);
         btnOne.setOnClickListener(this);
@@ -64,7 +62,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         dataBase.getQuestionsOfConstellation(numberOfQues);
 
-        dataBase = new SkyDataBase(this);
+        dataBase = new SkyDataBaseImpl(this);
 
         if("Созвездия".equals(theme)) {
             questions = dataBase.getQuestionsOfConstellation(numberOfQues);
@@ -138,7 +136,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(GameActivity.this, GameOverActivity.class);
             intent.putParcelableArrayListExtra("Questions", (ArrayList<? extends Parcelable>) questions);
             startActivity(intent);
-            --questionNum;
+            //--questionNum;
         }
     }
 }

@@ -53,8 +53,11 @@
         <activity
             android:name=".Activitys.SettingsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activitys.HelpActivity"
+        <activity
+            android:name=".Activitys.HelpActivity"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name=".Activitys.Game.GameOverShowQuestionActivity" >
         </activity>
     </application>
 

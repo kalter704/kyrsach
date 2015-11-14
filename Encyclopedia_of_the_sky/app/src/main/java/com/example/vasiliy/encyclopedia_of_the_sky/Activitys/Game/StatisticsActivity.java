@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.vasiliy.encyclopedia_of_the_sky.R;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.Score;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBase;
+import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBaseImpl;
 
 public class StatisticsActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -43,7 +44,7 @@ public class StatisticsActivity extends AppCompatActivity implements View.OnClic
         tvNumOfQues = (TextView) findViewById(R.id.tvNumOfQues);
         tvProcRight = (TextView) findViewById(R.id.tvProcRigth);
 
-        dataBase = new SkyDataBase(this);
+        dataBase = new SkyDataBaseImpl(this);
 
         Score score = new Score(this);
 

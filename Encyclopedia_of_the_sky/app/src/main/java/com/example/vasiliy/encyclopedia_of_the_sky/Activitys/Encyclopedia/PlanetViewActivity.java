@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.vasiliy.encyclopedia_of_the_sky.R;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.DataBaseObjects.PlanetObject;
 import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBase;
+import com.example.vasiliy.encyclopedia_of_the_sky.Services.SkyDataBaseImpl;
 
 import java.util.List;
 
@@ -79,7 +80,7 @@ public class PlanetViewActivity extends AppCompatActivity implements View.OnClic
         lineInBat2.setBackgroundColor(getResources().getColor(R.color.line_no_selected_color));
 
         tabHost.setOnTabChangedListener(this);
-        dataBase = new SkyDataBase(this);
+        dataBase = new SkyDataBaseImpl(this);
 
         Intent intent = getIntent();
         int idPlanet = Integer.valueOf(intent.getStringExtra("id_planet"));
