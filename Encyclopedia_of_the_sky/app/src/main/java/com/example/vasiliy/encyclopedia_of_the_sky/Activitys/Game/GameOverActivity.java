@@ -62,8 +62,6 @@ public class GameOverActivity extends AppCompatActivity implements View.OnClickL
             imgView.setImageDrawable(getResources().getDrawable(imageId));
 
             item.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
-            item.setOnClickListener(this);
-            item.setId(i);
             linLayout.addView(item);
         }
 
@@ -75,12 +73,6 @@ public class GameOverActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        if(v.getId() != R.id.btnBack) {
-            //Intent intent = new Intent(GameOverActivity.this, GameOverShowQuestionActivity.class);
-            //intent.putExtra("Question", questions.get(v.getId()));
-            //startActivity(intent);
-        } else {
-            finish();
-        }
+        finish();
     }
 }
