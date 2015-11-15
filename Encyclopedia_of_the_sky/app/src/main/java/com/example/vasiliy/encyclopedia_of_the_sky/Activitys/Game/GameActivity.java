@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -106,6 +107,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         boolean right = false;
+        /*
         switch(v.getId()) {
             case R.id.btnOne:
                 if(questions.get(questionNum).getRightAnswer().equals(btnOne.getText())){
@@ -127,6 +129,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     right = true;
                 }
                 break;
+        }
+        */
+        if(questions.get(questionNum).getRightAnswer().equals(((TextView) findViewById(v.getId())).getText())) {
+            right = true;
         }
         questions.get(questionNum).setRightAnswer(right);
         ++questionNum;
