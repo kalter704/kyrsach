@@ -44,13 +44,13 @@
             style="@style/game_btn_main_style"
             android:background="@drawable/btn_bg_main"
             android:text="@string/game_btn_main" />
-<!--
+
         <Button
             android:id="@+id/settings_btn_main"
             style="@style/settings_btn_main_style"
             android:background="@drawable/btn_bg_main"
             android:text="@string/settings_btn_main" />
--->
+
         <Button
             android:id="@+id/help_btn_main"
             style="@style/help_btn_main_style"

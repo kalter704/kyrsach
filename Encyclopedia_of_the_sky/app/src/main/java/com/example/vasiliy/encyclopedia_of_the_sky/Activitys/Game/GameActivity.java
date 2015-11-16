@@ -131,7 +131,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
         */
-        if(questions.get(questionNum).getRightAnswer().equals(((TextView) findViewById(v.getId())).getText())) {
+        String ans = ((TextView) findViewById(v.getId())).getText().toString();
+        ans = ans.replaceAll("\n", " ");
+        if(questions.get(questionNum).getRightAnswer().equals(ans)) {
             right = true;
         }
         questions.get(questionNum).setRightAnswer(right);
