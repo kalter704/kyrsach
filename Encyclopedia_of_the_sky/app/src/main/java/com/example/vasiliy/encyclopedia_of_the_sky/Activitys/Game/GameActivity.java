@@ -43,7 +43,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         theme = getIntent().getStringExtra("theme");
 
-        dataBase = new SkyDataBaseImpl(this);
+        //dataBase = new SkyDataBaseImpl(this);
 
         btnOne = (TextView) findViewById(R.id.btnOne);
         btnOne.setOnClickListener(this);
@@ -61,7 +61,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         imgView = (ImageView) findViewById(R.id.imgViewGame);
 
-        dataBase.getQuestionsOfConstellation(numberOfQues);
+        //dataBase.getQuestionsOfConstellation(numberOfQues);
 
         dataBase = new SkyDataBaseImpl(this);
 

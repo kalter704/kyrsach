@@ -63,6 +63,18 @@ public class EncyclopediaActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         Log.d(TAG_CLICK, "Click " + v.getId());
         Intent intent = null;
+        String theme = ((TextView) v.findViewById(R.id.tvName)).getText().toString();
+        switch (theme){
+            case "Созвездия":;
+            case "Планеты":
+                intent = new Intent(EncyclopediaActivity.this, ObjectsListActivity.class);
+                break;
+            default:
+                intent = new Intent(EncyclopediaActivity.this, ViewActivity.class);
+                break;
+        }
+        intent.putExtra("ObjectType", theme);
+        /*
         switch (v.getId()) {
             case 101:
                 Log.d(TAG_CLICK, "Созвездия");
@@ -110,6 +122,7 @@ public class EncyclopediaActivity extends AppCompatActivity implements View.OnCl
                 intent.putExtra("ObjectType", "Темная материя");
                 break;
         }
+        */
         startActivity(intent);
     }
 }
