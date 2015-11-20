@@ -20,10 +20,10 @@ import java.util.List;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView btnOne;
-    TextView btnTwo;
-    TextView btnThree;
-    TextView btnFour;
+    Button btnOne;
+    Button btnTwo;
+    Button btnThree;
+    Button btnFour;
     TextView tvScore;
     ImageView imgView;
 
@@ -45,16 +45,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         //dataBase = new SkyDataBaseImpl(this);
 
-        btnOne = (TextView) findViewById(R.id.btnOne);
+        btnOne = (Button) findViewById(R.id.btnOne);
         btnOne.setOnClickListener(this);
 
-        btnTwo = (TextView) findViewById(R.id.btnTwo);
+        btnTwo = (Button) findViewById(R.id.btnTwo);
         btnTwo.setOnClickListener(this);
 
-        btnThree = (TextView) findViewById(R.id.btnThree);
+        btnThree = (Button) findViewById(R.id.btnThree);
         btnThree.setOnClickListener(this);
 
-        btnFour = (TextView) findViewById(R.id.btnFour);
+        btnFour = (Button) findViewById(R.id.btnFour);
         btnFour.setOnClickListener(this);
 
         tvScore = (TextView) findViewById(R.id.tvScore);

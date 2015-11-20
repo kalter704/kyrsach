@@ -37,9 +37,9 @@ public class SkyDataBaseImpl implements SkyDataBase{
     }
 
     private void close() {
-        //if(dbh != null) {
-        dbh.close();
-        //}
+        if(dbh != null) {
+            dbh.close();
+        }
     }
 
     public void onUpdataDB() {
